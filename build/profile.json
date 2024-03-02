@@ -1,0 +1,18 @@
+[
+  {
+      "id": 1,
+      "name": "John Doe",
+      "image": "profile-picture.jpg",
+      "major": "Computer Science",
+      "grade": "Senior",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et sem euismod, blandit odio nec, feugiat quam."
+  },
+  {
+      "id": 2,
+      "name": "Jane Smith",
+      "image": "profile-picture2.jpg",
+      "major": "Biology",
+      "grade": "Freshman",
+      "bio": "Nulla facilisi. Sed sit amet ultrices nulla. Proin at eros rutrum, scelerisque dui nec, feugiat nisi."
+  }
+]

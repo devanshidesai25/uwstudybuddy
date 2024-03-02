@@ -1,0 +1,453 @@
+body {
+    margin: .5rem;
+    background-color: #6433b9;
+    color: white;
+    font-family: 'Goergia', serif;
+    letter-spacing: 1px; 
+ }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 20%;
+    height: auto;
+}
+
+/* Media query for larger screens (e.g., tablets) */
+@media (min-width: 768px) {
+    img {
+        max-width: 40%; /* Adjust the size as needed */
+    }
+}
+
+.menu-bar {
+    font-family: 'Goergia', serif;
+    background-color: #383636;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    letter-spacing: 2px; 
+    word-spacing: 30px;
+    
+}
+
+.menu-bar ul {
+    margin: 0;
+    padding: 10px;
+    list-style-type: none;
+}
+
+.menu-bar li {
+    display: inline;
+    margin-right: 20px;
+  
+    word-spacing: 30px;
+}
+.menu-bar li:last-child {
+    margin-right: 0;
+}
+
+.menu-bar a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu-bar a.active {
+    background-color: #bb95f9;
+    border-radius: 5px;
+}
+
+@media (min-width: 900px) {
+    .menu-bar ul {
+        margin: 0;
+        padding: 15px;
+        list-style-type: none;
+    }
+    
+    .menu-bar {
+        font-family: 'Goergia', serif;
+        background-color: #383636;
+        font-size: larger;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        letter-spacing: 2px; 
+        word-spacing: 120px;
+    }
+    
+}
+
+h1, h4 {
+    margin-top: 0;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h4 {
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    margin: 0;
+}
+  
+  main {
+    flex: 1; /* Allow main content to grow and fill available space */
+  }
+  
+footer {
+    background-color: #383636;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+.listing-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, textarea {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+
+}
+
+select {
+    width: 30%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #dcc21e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px; 
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}  
+
+button:hover {
+    background-color: #e7bf3c9c;
+}
+
+@media (min-width: 768px) {
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+
+    }
+
+    .custom-major-input {
+        width: 0%; /* Adjust the size as needed for larger screens */
+    }
+    
+    select {
+        width: 50%;
+        box-sizing: border-box;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.existing-listings,
+.new-listings {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    align-items: center;
+}
+
+.new-listings {
+    margin-left: 20px;
+}
+
+.new-listings ul, .existing-listings ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: large;
+}
+
+.new-listings li {
+    margin: 10px;
+
+}
+
+.existing-listings li{
+    display: block;
+    margin: 20px;
+    padding: 20px;
+    background-color: #d5b8f0;
+    text-align: center;
+    color: rgb(71, 71, 71);
+    border-radius: 5px;
+}
+
+.new-listings a {
+    display: block;
+    padding: 20px;
+    background-color: #d5b8f0;
+    text-align: center;
+    color: rgb(71, 71, 71);
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 30px;
+
+}
+
+.new-listings a:hover {
+    align-items: center;
+    background-color: #e7bf3c9c;
+}
+
+.existing-listings li:hover {
+    align-items: center;
+    background-color: #e7bf3c9c;
+}
+
+h2 {
+    margin-top: 50px;
+    color: #32312f
+}
+
+button[type="goback"] {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .listing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto; /* Add some margin for better visual appearance */
+    border-radius: 8px; /* Add rounded corners to the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+    max-width: 700px;
+    padding: 100px
+  }
+
+
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto; /* Add some margin for better visual appearance */
+    border-radius: 8px; /* Add rounded corners to the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+    max-width: 700px;
+    padding: 100px;
+    color: rgba(42, 40, 40, 0.956)
+  }
+  
+#add-listing {
+    color:rgba(42, 40, 40, 0.956)
+}
+  
+
+.listings-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line if necessary */
+    justify-content: space-around; /* Distribute items evenly along the main axis */
+    align-items: stretch; /* Stretch items to fill the cross-axis */
+    background-color: #e5d8ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.textbook-listings {
+    flex: 1; /* Allow the items inside to grow and fill available space */
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-wrap: wrap; /* Allow items to wrap to the next line if necessary */
+}
+
+.textbook-item-container {
+    flex: 0 0 30%; /* Limit the individual item's width to 30% */
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.textbook-item-container img {
+    max-width: 100%; /* Ensure the image is responsive within its container */
+    max-height: 200px; /* Set a specific max-height for the image */
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.textbook-item-container a {
+    text-decoration: none;
+    color: #383636;
+}
+
+#All-Listings{
+    h2{
+        text-align: left;
+        padding: 20px;
+        color: white
+
+    }    
+}
+
+  #Filter {
+    margin: 20px
+  }
+
+  #searchForm {
+    margin: 20px;
+  }
+
+
+  
+.listings-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line if necessary */
+    justify-content: space-around; /* Distribute items evenly along the main axis */
+    align-items: stretch; /* Stretch items to fill the cross-axis */
+    background-color: #e5d8ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.textbook-listings {
+    flex: 1; /* Allow the items inside to grow and fill available space */
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+
+
+.listings-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line if necessary */
+    justify-content: space-around; /* Distribute items evenly along the main axis */
+    align-items: stretch; /* Stretch items to fill the cross-axis */
+    background-color: #e5d8ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.textbook-listings {
+    flex: 1; /* Allow the items inside to grow and fill available space */
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-wrap: wrap; /* Allow items to wrap to the next line if necessary */
+}
+
+.textbook-item-container {
+    flex: 0 0 30%; /* Limit the individual item's width to 30% */
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.textbook-item-container img {
+    max-width: 100%; /* Ensure the image is responsive within its container */
+    max-height: 200px; /* Set a specific max-height for the image */
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.textbook-item-container a {
+    text-decoration: none;
+    color: #383636;
+}
+
+
+.friends-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Change from center to space-between */
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: auto;
+    max-width: 700px;
+    min-height: auto;
+}
+
+.friends-form {
+    max-width: 600px; /* Adjust the max-width according to your design */
+    margin: 0 auto;
+}
+  
+ 
+.custom-major-input {
+    width: 50%; /* Set the width as needed for the "Major" input */
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+

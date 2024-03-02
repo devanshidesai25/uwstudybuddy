@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d05b05c4.css",
+    "main.js": "/static/js/main.44c89591.js",
+    "static/media/studybuddy-logo.png": "/static/media/studybuddy-logo.ea2c678b19fee34807fc.png",
+    "static/media/pythonbook.png": "/static/media/pythonbook.e01d33b313fc346b8d12.png",
+    "static/media/friends.png": "/static/media/friends.ce9199e66d427f4c69ac.png",
+    "static/media/shop.png": "/static/media/shop.cd6a7e90e64da3a609c1.png",
+    "static/media/profile.png": "/static/media/profile.97b4b06321f65282ca67.png",
+    "static/media/sell.png": "/static/media/sell.c566e9a012f748b09037.png",
+    "static/media/algebrabook.jpg": "/static/media/algebrabook.5e278efd8fb56aaf9d10.jpg",
+    "static/media/biobook.png": "/static/media/biobook.6e376c454ede363c89bf.png",
+    "index.html": "/index.html",
+    "main.d05b05c4.css.map": "/static/css/main.d05b05c4.css.map",
+    "main.44c89591.js.map": "/static/js/main.44c89591.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d05b05c4.css",
+    "static/js/main.44c89591.js"
+  ]
+}

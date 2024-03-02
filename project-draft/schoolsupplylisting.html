@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Add School Supply Listing - UW Study Buddy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="menu-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="sell.html">Sell</a></li>
+            <li><a href="friends.html">Friends</a></li>
+        </ul>
+    </div>
+    <a href="sell.html" class="back-button">Back to Your Listings</button>
+    <div class = "listing-container">
+
+    <section id="add-listing">
+        <h1>Add School Supply Listing</h1>
+
+        <div class="listing-form">
+            <!-- Will add form link later -->
+                <label for="supply">Type of Supply</label>
+                <input type="text" id="supply" name="supply" required>
+
+                <label for="condition">Condition</label>
+                <select name="condition" class="condition-picker" >
+                    <option value=" ">Select a condition</option>
+                    <option>Brand New</option>
+                    <option>Very Good</option>
+                    <option >Good</option>
+                    <option >Used</option>
+                  </select>
+
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price">
+
+                <button type="submit">Submit Listing</button>
+            
+        </div>
+    </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 UW Study Buddy App. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
