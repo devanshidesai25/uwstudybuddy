@@ -19,6 +19,7 @@ body {
 }
 
 .menu-bar {
+    margin: 0px;
     display: block;
     background-color: #383636;
     padding: 10px;
@@ -381,13 +382,13 @@ button[type="goback"] {
 }
 
 .home-btns ul {
+    margin-left : 10px;
     list-style-type: none;
     padding: 0;
     display: flex;
     justify-content: center;
     color: purple;
 }
-
 .home-btns ul li {
     width: 300px; 
     height: auto; 
