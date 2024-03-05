@@ -15,7 +15,7 @@ function HomePage() {
       <Header />
       <main>
         <h1>Welcome to UW Study Buddy</h1>
-        <img src={studyBuddyLogo} alt="Study Buddy Logo" />
+        <li><img className="homepage-img" src={studyBuddyLogo} alt="Study Buddy Logo" /></li>
         <h4>Unlock Your Learning Legacy: Connect, Sell, Succeed!</h4>
 
         <div className="home-btns">

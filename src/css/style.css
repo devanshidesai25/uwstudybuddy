@@ -1,10 +1,8 @@
-
 body {
     margin: 0;
     background-color: #A384E4;
     color: white;
     font-family: 'Georgia', serif;
-    letter-spacing: 1px; 
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -12,7 +10,7 @@ body {
     padding-bottom: 60px;
  }
 
-img {
+.homepage-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -20,62 +18,47 @@ img {
     max-height: 200px;
 }
 
-
-
 .menu-bar {
-    font-family: 'Georgia', serif;
+    display: block;
     background-color: #383636;
-    color: #fff;
-    padding: 5px;
-    text-align: center;
-    letter-spacing: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-}
-
-.menu-bar ul {
-    margin: 0;
     padding: 10px;
+    text-align: center; 
+    align-items: flex-start; 
+  }
+  
+  .menu-bar ul {
+    padding: 25px;
     list-style-type: none;
-    display: flex; 
-}
-
-.menu-bar li {
-    display: inline-flex; 
-    align-items: center; 
+    word-spacing: 30px;
+    display: flex;
+    justify-content: center; 
+  }
+  
+  .menu-bar li {
     margin-right: 20px;
-    word-spacing: 30px; 
-}
-
-.menu-bar a {
+  }
+  
+  .menu-bar a {
     text-decoration: none;
     color: #fff;
-    display: flex; 
-    align-items: center; 
-}
+  }
 
-.menu-bar a img {
-    margin-right: 5px;
-    max-width: 50px;
-    max-height: auto;
-}
-
-.purple-btn {
-    background-color: rgb(58, 4, 98);
-    border-color: rgb(58, 4, 98);
-    color: white;
-}
-
-@media (min-width: 850px) {
-    .menu-bar ul {
-        padding: 15px; 
+@media (min-width: 768px) {
+    .homepage-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 300px;
+        max-height: 300px;
     }
-    
-    .menu-bar {
-        font-size: larger;
-        word-spacing: 120px; 
-    }
+}
+
+  .header-img {
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 75px;
+    max-height: 75px;
 }
 
 h1 {
@@ -428,12 +411,13 @@ button[type="goback"] {
 }
 
 .home-btns ul li a img {
-    width: 50px;
+    width: 75px;
     height: auto;
-    margin-bottom: 5px;
+    margin: 10px;
 }
 
 .home-btns ul li a span {
+    padding-bottom: 10px;
     font-size: 14px;
     font-weight: bold;
 }
