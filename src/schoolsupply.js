@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function SchoolSupplyListingForm() {
   const [supply, setSupply] = useState('');
   const [condition, setCondition] = useState('');
-  const [image, setImage] = useState(null); // Handle image upload separately
+  const [image, setImage] = useState(null); 
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
 
@@ -13,7 +13,7 @@ function SchoolSupplyListingForm() {
     const formData = {
       supply,
       condition,
-      image, // Handle image upload separately
+      image, 
       description,
       price,
     };
