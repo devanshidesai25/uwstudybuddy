@@ -11,7 +11,6 @@ import './css/style.css';
 
 function App(props) {
   return (
-    <div>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/availablelistings" element={<AvailableListings />} />
@@ -21,7 +20,6 @@ function App(props) {
         <Route path="/listings" element={<AvailableListings />} />
         <Route path="/apartments/:id" element={<ListingDisplay />} />
       </Routes>
-    </div>
   );
 }
 

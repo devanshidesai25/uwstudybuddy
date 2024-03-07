@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; 
-    padding-bottom: 60px;
+    margin: 0;
  }
 
 .homepage-img {
@@ -25,6 +25,7 @@ body {
     font-size: larger;
     text-align: center; 
     align-items: flex-start; 
+    justify-content: space-between;
   }
   
   .menu-bar ul {
@@ -86,7 +87,6 @@ footer {
     background-color: #383636;
     color: #fff;
     text-align: center;
-    position: fixed;
     padding: 10px;
 }
   
