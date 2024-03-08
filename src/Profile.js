@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
-import Header from './Header'; 
+import Header from './Header';
 import Footer from './Footer';
-import axios from 'axios'; // You'll need axios to make HTTP requests
 
 const ProfileForm = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
+    image: null,
     major: '',
-    year: 'Freshman',
-    email: '',
-    instagram: '',
+    grade: '',
     bio: ''
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setFormData(prevState => ({
       ...prevState,
-      [name]: value
+      [name]: name === 'image' ? files[0] : value
     }));
   };
 
@@ -28,12 +25,10 @@ const ProfileForm = () => {
       localStorage.setItem('profileData', JSON.stringify(formData));
       alert('Profile saved successfully!');
       setFormData({
-        firstName: '',
-        lastName: '',
+        name: '',
+        image: null,
         major: '',
-        year: '',
-        email: '',
-        instagram: '',
+        grade: '',
         bio: ''
       });
     } catch (error) {
@@ -45,23 +40,24 @@ const ProfileForm = () => {
   return (
     <div>
       <Header />
+      <div className="profile-container">
       <h1>Create Your Profile</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="profile-form" onSubmit={handleSubmit}>
         <div>
-          <label>First Name:</label>
-          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+          <label>Name:</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
         </div>
         <div>
-          <label>Last Name:</label>
-          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+          <label>Image:</label>
+          <input type="file" name="image" accept="image/*" onChange={handleChange} />
         </div>
         <div>
           <label>Major:</label>
           <input type="text" name="major" value={formData.major} onChange={handleChange} required />
         </div>
         <div>
-          <label>Year:</label>
-          <select name="year" value={formData.year} onChange={handleChange}>
+          <label>Grade:</label>
+          <select name="grade" value={formData.grade} onChange={handleChange}>
             <option value="Freshman">Freshman</option>
             <option value="Sophomore">Sophomore</option>
             <option value="Junior">Junior</option>
@@ -69,19 +65,12 @@ const ProfileForm = () => {
           </select>
         </div>
         <div>
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Instagram:</label>
-          <input type="text" name="instagram" value={formData.instagram} onChange={handleChange} />
-        </div>
-        <div>
           <label>Bio:</label>
           <textarea name="bio" value={formData.bio} onChange={handleChange}></textarea>
         </div>
         <button type="submit">Save Profile</button>
       </form>
+      </div>
       <Footer />
     </div>
   );
