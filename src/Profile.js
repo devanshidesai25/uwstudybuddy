@@ -1,68 +1,90 @@
 import React, { useState } from 'react';
 import Header from './Header'; 
 import Footer from './Footer';
+import axios from 'axios'; // You'll need axios to make HTTP requests
 
-function EditProfile({ onSaveProfile }) {
-  const [profileData, setProfileData] = useState({
-    name: '',
-    image: '',
+const ProfileForm = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
     major: '',
-    grade: '',
+    year: 'Freshman',
+    email: '',
+    instagram: '',
     bio: ''
   });
 
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setProfileData(prevData => ({
-      ...prevData,
+    setFormData(prevState => ({
+      ...prevState,
       [name]: value
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSaveProfile(profileData);
+    try {
+      localStorage.setItem('profileData', JSON.stringify(formData));
+      alert('Profile saved successfully!');
+      setFormData({
+        firstName: '',
+        lastName: '',
+        major: '',
+        year: '',
+        email: '',
+        instagram: '',
+        bio: ''
+      });
+    } catch (error) {
+      console.error('Error saving profile:', error);
+      alert('Error saving profile. Please try again later.');
+    }
   };
 
   return (
     <div>
-      <Header /> {}
-
-      <div className="profile-container">
-        <section id="Build Profile">
-          <h1>Create Your Profile!</h1>
-
-          <form onSubmit={handleSubmit} className="profile-form">
-            {/* Will add form link later */}
-            <label htmlFor="name">Username:</label>
-            <input type="text" id="name" name="name" required onChange={handleInputChange} value={profileData.name} />
-
-            <label htmlFor="profile-picture">Profile Picture:</label>
-            <input type="file" id="image" name="image" accept="image/*" onChange={handleInputChange} />
-
-            <label htmlFor="major">Major:</label>
-            <input type="text" id="major" name="major" onChange={handleInputChange} value={profileData.major} />
-
-            <label htmlFor="grade">Grade</label>
-            <select name="grade" className="grade-picker" onChange={handleInputChange} value={profileData.grade}>
-              <option value="">Select your grade</option>
-              <option>Freshman</option>
-              <option>Sophomore</option>
-              <option>Junior</option>
-              <option>Senior</option>
-            </select>
-
-            <label htmlFor="bio">Bio:</label>
-            <textarea id="bio" name="bio" rows="4" onChange={handleInputChange} value={profileData.bio}></textarea>
-
-            <button type="submit">Make Changes!</button>
-          </form>
-        </section>
-      </div>
-
-      <Footer /> {}
+      <Header />
+      <h1>Create Your Profile</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>First Name:</label>
+          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Last Name:</label>
+          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Major:</label>
+          <input type="text" name="major" value={formData.major} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Year:</label>
+          <select name="year" value={formData.year} onChange={handleChange}>
+            <option value="Freshman">Freshman</option>
+            <option value="Sophomore">Sophomore</option>
+            <option value="Junior">Junior</option>
+            <option value="Senior">Senior</option>
+          </select>
+        </div>
+        <div>
+          <label>Email:</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Instagram:</label>
+          <input type="text" name="instagram" value={formData.instagram} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Bio:</label>
+          <textarea name="bio" value={formData.bio} onChange={handleChange}></textarea>
+        </div>
+        <button type="submit">Save Profile</button>
+      </form>
+      <Footer />
     </div>
   );
-}
+};
 
-export default EditProfile;
+export default ProfileForm;
