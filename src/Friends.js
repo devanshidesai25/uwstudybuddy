@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import profiles from './profileData';
+import alumni from './AlumniData';
 
 function FriendItem({ friend }) {
   return (
@@ -9,7 +9,9 @@ function FriendItem({ friend }) {
       <div className="card-body">
         <h5 className="card-title">{friend.name}</h5>
         <p className="card-text">Major: {friend.major}</p>
-        <p className="card-text">Grade: {friend.grade}</p>
+        <p className="card-text">Grad Year: {friend.gradYear}</p>
+        <p className="card-text">Company: {friend.company}</p>
+        <p className="card-text">Position: {friend.position}</p>
         <p className="card-text">Bio: {friend.bio}</p>
         <a href="#" className="btn btn-primary purple-btn">
           View Profile
@@ -22,12 +24,14 @@ function FriendItem({ friend }) {
 function Friends() {
   const [searchCriteria, setSearchCriteria] = useState({
     major: '',
-    grade: ''
+    gradYear: '',
+    company: '',
+    position: ''
   });
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    setSearchResults(profiles);
+    setSearchResults(alumni);
   }, []);
 
   const handleInputChange = (e) => {
@@ -41,14 +45,21 @@ function Friends() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const filteredProfiles = profiles.filter((profile) => {
+    const filteredProfiles = alumni.filter((profile) => {
       const majorMatch =
         !searchCriteria.major ||
         profile.major.toLowerCase().includes(searchCriteria.major.toLowerCase());
-      const gradeMatch =
-        !searchCriteria.grade || profile.grade.toLowerCase() === searchCriteria.grade.toLowerCase();
+      const gradYearMatch =
+        !searchCriteria.gradYear ||
+        profile.gradYear.toLowerCase() === searchCriteria.gradYear.toLowerCase();
+      const companyMatch =
+        !searchCriteria.company ||
+        profile.company.toLowerCase().includes(searchCriteria.company.toLowerCase());
+      const positionMatch =
+        !searchCriteria.position ||
+        profile.position.toLowerCase().includes(searchCriteria.position.toLowerCase());
 
-      return majorMatch && gradeMatch;
+      return majorMatch && gradYearMatch && companyMatch && positionMatch;
     });
 
     setSearchResults(filteredProfiles);
@@ -59,8 +70,8 @@ function Friends() {
       <Header />
 
       <div className="friends-container">
-        <section id="Find Friends">
-          <h1 className = "friends-header">Connect with Alumni!</h1>
+        <section className='alumni-search'>
+          <h1 className="friends-header">Connect with Alumni!</h1>
 
           <form onSubmit={handleSubmit} className="friends-form">
             <label htmlFor="major">Major:</label>
@@ -72,19 +83,32 @@ function Friends() {
               value={searchCriteria.major}
             />
 
-            <label htmlFor="grade">Grade:</label>
-            <select
-              name="grade"
-              id="grade"
+            <label htmlFor="gradYear">Graduation Year:</label>
+            <input
+              type="text"
+              id="gradYear"
+              name="gradYear"
               onChange={handleInputChange}
-              value={searchCriteria.grade}
-            >
-              <option value="">Select grade</option>
-              <option value="Freshman">Freshman</option>
-              <option value="Sophomore">Sophomore</option>
-              <option value="Junior">Junior</option>
-              <option value="Senior">Senior</option>
-            </select>
+              value={searchCriteria.gradYear}
+            />
+
+            <label htmlFor="company">Company:</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              onChange={handleInputChange}
+              value={searchCriteria.company}
+            />
+
+            <label htmlFor="position">Position:</label>
+            <input
+              type="text"
+              id="position"
+              name="position"
+              onChange={handleInputChange}
+              value={searchCriteria.position}
+            />
 
             <button type="submit">Search</button>
           </form>
@@ -94,7 +118,7 @@ function Friends() {
       <div id="results" style={{ display: 'flex', flexWrap: 'wrap' }}>
         {searchResults.length === 0 ? (
           <p>
-            {searchCriteria.major || searchCriteria.grade
+            {searchCriteria.major || searchCriteria.gradYear || searchCriteria.company || searchCriteria.position
               ? 'No matching friends found.'
               : 'Enter search criteria.'}
           </p>
@@ -105,9 +129,9 @@ function Friends() {
         )}
       </div>
 
-      {!searchCriteria.major && !searchCriteria.grade && (
+      {!searchCriteria.major && !searchCriteria.gradYear && !searchCriteria.company && !searchCriteria.position && (
         <div id="allFriends" style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {profiles.map((friend) => (
+          {alumni.map((friend) => (
             <FriendItem key={friend.id} friend={friend} />
           ))}
         </div>
