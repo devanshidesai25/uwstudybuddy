@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import Header from './Header';
 import Footer from './Footer';
 import studyBuddyLogo from './img/studybuddy-logo.png';
@@ -21,8 +23,20 @@ function HomePage() {
     <div>
       <Header />
       <main id='main'>
-        <h1 class='welcome'><strong>Welcome to UW Study Buddy</strong></h1>
-        <h4 class='welcome'>Unlock Your Learning Legacy: Connect, Sell, Succeed!</h4>
+        <h1 className='welcome'><strong>Welcome to UW Study Buddy</strong></h1>
+        <h4 className='welcome'>Unlock Your Learning Legacy: Connect, Sell, Succeed!</h4>
+        <div className='social-icons'>
+            <a href="https://www.facebook.com/yourpage" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faFacebook} size="2x" />
+            </a>
+            <a href="https://twitter.com/yourpage" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faTwitter} size="2x" />
+            </a>
+            <a href="https://www.instagram.com/yourpage" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
+            </a>
+          </div>
+
         <ul class='banner'>
             <li><img src={img1} alt="campusImage" /></li>
             <li><img src={img2} alt="campusImage" /></li>

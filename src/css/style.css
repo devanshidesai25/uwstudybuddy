@@ -33,6 +33,14 @@ body {
     margin-bottom: 30px;
 }
 
+.social-icons {
+    justify-content: left;
+    text-align: left;
+    margin-left: 90px;
+    margin-bottom: 30px;
+    color: #4D307F;
+}
+
 .banner {
     width: 100%;
     padding: 0;
@@ -145,6 +153,7 @@ footer {
     padding: 10px;
     vertical-align: center;
     margin-bottom: 0;
+    position: fixed;
 }
   
 .listing-form {
