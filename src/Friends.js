@@ -4,6 +4,10 @@ import Footer from './Footer';
 import alumni from './AlumniData';
 
 function FriendItem({ friend }) {
+  const handleViewLinkedIn = () => {
+    window.open(friend.linkedin, '_blank');
+  };
+  
   return (
     <div className="card m-3" style={{ width: '18rem' }}>
       <div className="card-body">
@@ -13,9 +17,9 @@ function FriendItem({ friend }) {
         <p className="card-text">Company: {friend.company}</p>
         <p className="card-text">Position: {friend.position}</p>
         <p className="card-text">Bio: {friend.bio}</p>
-        <a href="#" className="btn btn-primary purple-btn">
-          View Profile
-        </a>
+        <button className="btn btn-primary purple-btn" onClick={handleViewLinkedIn}>
+          View LinkedIn
+        </button>
       </div>
     </div>
   );
