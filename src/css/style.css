@@ -117,7 +117,6 @@ img {
 
 h1 {
     text-align: center;
-    padding-top: 20px;
     margin-bottom: 20px; 
 }
 
@@ -269,7 +268,6 @@ button:hover {
 }
 
 h2 {
-    margin-top: 50px;
     color: #32312f
 }
 
@@ -303,13 +301,15 @@ button[type="goback"] {
     align-items: center;
     justify-content: center;
     background-color: white;
-    padding: 20px;
-    margin: 20px auto; 
+    padding: 10px;
+    margin: 10px auto; 
     border-radius: 8px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     max-width: 700px;
     padding: 100px;
-    color: rgba(42, 40, 40, 0.956)
+    color: rgba(42, 40, 40, 0.956);
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
   
 #add-listing {
@@ -490,6 +490,56 @@ button[type="goback"] {
     min-height: auto;
 }
 
+.allCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  .card {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(25% - 20px);
+    box-sizing: border-box;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #8968c1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .btn:hover {
+    background-color: #4D307F;
+  }
+
 .friends-form {
     max-width: 600px; 
     margin: 15px;
@@ -502,3 +552,39 @@ button[type="goback"] {
 
   }
 
+
+  .selected {
+    background-color: #eee7ff;
+    border: 2px solid #4D307F;
+  }
+
+  .send-email-button {
+    background-color: #8968c1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .send-email-button:hover {
+    background-color: #4D307F;
+  }
+  
+  #desc {
+    justify-content: center;
+    text-align: center;
+  }
+
+  #submit-title {
+    font-weight: bold;
+    color: #4D307F;
+  }
+
+  #desc2 {
+    justify-content: left;
+    text-align: left;
+    color: #4D307F;
+    font-style: italic;
+    padding-top: 10px;
+  }
