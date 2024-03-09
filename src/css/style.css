@@ -13,6 +13,10 @@ body {
     margin-bottom: 0;
  }
 
+ #main {
+    padding-top: 30px;
+ }
+
 .menu-bar img {
     display: block;
     margin-left: auto;

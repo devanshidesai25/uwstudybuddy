@@ -20,7 +20,7 @@ function HomePage() {
   return (
     <div>
       <Header />
-      <main>
+      <main id='main'>
         <h1 class='welcome'><strong>Welcome to UW Study Buddy</strong></h1>
         <h4 class='welcome'>Unlock Your Learning Legacy: Connect, Sell, Succeed!</h4>
         <ul class='banner'>
@@ -38,8 +38,8 @@ function HomePage() {
             <li>
               <Link to="/profile">
                 <img src={profileLogo} alt="Profile Logo" />
-                <span>Profile</span>
-                <p>Create a profile & get started!</p>
+                <span>Find Friends</span>
+                <p>Connect with peers!</p>
               </Link>
             </li>
             <li>
@@ -59,8 +59,8 @@ function HomePage() {
             <li>
               <Link to="/friends">
                 <img src={friendsLogo} alt="Friends Logo" />
-                <span>Friends</span>
-                <p>Connect with peers or alumni!</p>
+                <span>Alumni</span>
+                <p>Connect with alumni!</p>
               </Link>
             </li>
           </ul>
