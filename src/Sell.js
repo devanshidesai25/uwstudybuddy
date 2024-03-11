@@ -88,6 +88,15 @@ const Sell = () => {
                 <option>Miscellaneous</option>
               </select>
 
+              <label htmlFor="name">Listing name:</label>
+              <textarea
+                id="name"
+                name="name"
+                rows="1"
+                value={formData.name}
+                onChange={handleInputChange}
+              ></textarea>
+
               <label htmlFor="condition">Condition</label>
               <select
                 name="condition"
