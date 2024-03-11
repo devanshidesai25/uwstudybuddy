@@ -36,7 +36,7 @@ const alumni = [
       "id": "4",
       "name": "Michael Brown",
       "major": "Psychology",
-      "email": 'michael.brown@example.com',
+      "email": 'm.brown@example.com',
       "gradYear": "2023",
       "company": "Mind Matters",
       "position": "Therapist",
