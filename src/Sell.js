@@ -1,28 +1,39 @@
-mport Header from './Header'; 
+import Header from './Header'; 
 import Footer from './Footer';
 import { getDatabase, ref, push } from 'firebase/database';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import React, { useState } from 'react';
 
 const Sell = () => {
   const database = getDatabase();
+  const storage = getStorage();
 
-  const saveSupplyListingToDatabase = (supplyData) => {
-    push(ref(database, 'supplyListings'), supplyData)
-      .then(() => {
-        console.log('Listing data saved successfully');
-      })
-      .catch((error) => {
-        console.error('Error saving listing data:', error);
-      });
+  const saveSupplyListingToDatabase = async (supplyData) => {
+    const imageRef = storageRef(storage, `images/${supplyData.image.name}`);
+    const uploadTask = uploadBytes(imageRef, supplyData.image);
+    try {
+      await uploadTask;
+      const imageURL = await getDownloadURL(imageRef);
+      const supplyImageURL = { ...supplyData, image: imageURL };
+      push(ref(database, 'supplyListings'), supplyImageURL)
+        .then(() => {
+          console.log('Listing Created!');
+        })
+        .catch((error) => {
+          console.error('Error saving your response', error);
+        });
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
   };
 
   const [formData, setFormData] = useState({
-    type: '',
+    supplyType: '', 
     condition: '',
-    bathrooms: '',
-    image: null,
-    start_date: new Date(),
-    email: ''
+    description: '',
+    price: '',
+    email: '',
+    image: null
   });
 
   const handleInputChange = (event) => {
@@ -33,19 +44,25 @@ const Sell = () => {
     }));
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      image: file,
-    }));
+  const handleImageChange = (event) => {
+    setFormData({
+      ...formData,
+      image: event.target.files[0]
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     saveSupplyListingToDatabase(formData);
-    alert('Apartment Details Submitted!');
-
+    alert('Supply Listing Submitted!');
+    setFormData({
+      supplyType: '',
+      condition: '',
+      description: '',
+      price: '',
+      email: '',
+      image: null,
+    });
   };
 
 
@@ -91,7 +108,7 @@ const Sell = () => {
                 id="image"
                 name="image"
                 accept="image/*"
-                onChange={handleFileChange}
+                onChange={handleImageChange}
               />
 
               <label htmlFor="description">Description:</label>
@@ -109,6 +126,15 @@ const Sell = () => {
                 id="price"
                 name="price"
                 value={formData.price}
+                onChange={handleInputChange}
+              />
+
+            <label htmlFor="email">Email:</label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                value={formData.email}
                 onChange={handleInputChange}
               />
 
