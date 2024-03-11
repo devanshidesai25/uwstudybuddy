@@ -60,15 +60,15 @@ const Shop = () => {
               <div key={listing.id} className="textbook-item-container">
                 <img src={listing.image} alt={`${listing.name} Image`} />
                 <ul>
-                  <li><h4>{listing.condition}</h4></li>
-                  <li><h4>{listing.price}</h4></li>
+                  <li><h3>{listing.name}</h3></li>
+                  <li><h6>${listing.price}</h6></li>
+                  <li><button>View Full Listing</button></li>
                 </ul>
               </div>
             ))}
           </section>
         </div>
       </section>
-
       <Footer />
     </div>
   );
