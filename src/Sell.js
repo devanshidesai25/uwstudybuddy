@@ -71,7 +71,7 @@ const Sell = () => {
       <Header />
       <div className="listing-container">
         <section id="add-listing">
-          <h1>Add School Supply Listing</h1>
+         <h2 id='submit-title'>Submit Your Profile</h2>
           <div className="listing-form">
             <form onSubmit={handleSubmit}>
               <label htmlFor="supplyType">Type of Supply</label>

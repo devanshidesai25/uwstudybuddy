@@ -19,7 +19,6 @@ function App(props) {
       <Route path="/profile" element={<Profile />} />
       <Route path="/friends" element={<Friends />} />
       <Route path="/listings" element={<AvailableListings />} />
-      <Route path="/apartments/:id" element={<ListingDisplay />} />
     </Routes>
   );
 }

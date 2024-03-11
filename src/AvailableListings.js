@@ -3,15 +3,20 @@ import { getDatabase, ref, get, set } from 'firebase/database';
 import { Link } from 'react-router-dom'; 
 import Header from './Header';
 import Footer from './Footer'; 
-import algebrabook from './img/algebrabook.jpg';
-import biobook from './img/biobook.png';
-import pythonbook from './img/pythonbook.png';
 
-const AvailableListings = () =>{
+const AvailableListings = () => {
+  const [listings, setListings] = useState([]);
+  const [selectedSupplyType, setType] = useState('All'); // Initial value is 'All'
 
-  const[listings, setListings] = useState([]);
-  const [listingType, setType] = useState("All"); 
-  
+  const filterListings = (listings) => {
+    return listings.filter((listing) => {
+      if (selectedSupplyType !== 'All' && listing.supplyType !== selectedSupplyType) {
+        return false;
+      }
+      return true;
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const database = getDatabase();
@@ -25,25 +30,23 @@ const AvailableListings = () =>{
       setListings(data);
     };
     fetchData();
-  }, []);
+  }, []); 
 
-  const filterListings = (listings) => {
-    return listings.filter((listing) => {
-      if (listingType !== "All" && listingType !== listing.type) return false;
-      return true;
-    });
+  const handleDropdownChange = (event) => {
+    setType(event.target.value);
   };
 
-const filteredListings = filterListings(listings);
+  const filteredListings = filterListings(listings);
 
-return (
+
+  return (
     <div>
       <Header />
       <section id="All-Listings">
-        <h2>Available Listings</h2>
+        <h2>View Available Listings</h2>
         <section id="Filter">
           <label htmlFor="category">Filter by Category:</label>
-          <select id="category" onChange={(e) => { setType(e.target.value); console.log(e.target.value); }}>
+          <select id="category" onChange={(e) => setType(e.target.value)}>
             <option value="All">All</option>
             <option value="Textbook">Textbooks</option>
             <option value="Notes">Notes</option>
@@ -59,9 +62,6 @@ return (
                 <ul>
                   <li><h4>{listing.condition}</h4></li>
                   <li><h4>{listing.price}</h4></li>
-                  <li><h4>{listing.name}</h4></li>
-                  <li><h4>{listing.name}</h4></li>
-                  <li><h4>{listing.name}</h4></li>
                 </ul>
               </div>
             ))}
