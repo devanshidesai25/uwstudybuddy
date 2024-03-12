@@ -697,41 +697,11 @@ button[type="goback"] {
     align-items: center;
   }
   
-  
+
   .home-btns {
     margin-top: 30px;
   }
-  
-  .home-btns ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .home-btns li {
-    margin: 0 20px;
-    text-align: center;
-  }
-  
-  .home-btns a {
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .home-btns span {
-    display: block;
-    font-size: 18px;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  .home-btns p {
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  
+
   .social-icons {
     margin-top: 30px;
   }
