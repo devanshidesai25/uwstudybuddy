@@ -5,7 +5,7 @@ import Shop from './Shop';
 import Sell from './Sell';
 import Profile from './Profile';
 import Friends from './Friends';
-import ListingDetails from '/.ListingDetails';
+import ListingDetails from './ListingDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/style.css';
 
@@ -18,7 +18,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/friends" element={<Friends />} />
       <Route path="/shop" element={<Shop/>} />
-      <Route path="/listing:id" element={<ListingDetails/> } />
+      <Route path="/listing/:id" element={<ListingDetails/> } />
     </Routes>
   );
 }

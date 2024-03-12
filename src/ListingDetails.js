@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { getDatabase, ref, get } from 'firebase/database';
+import { useParams } from 'react-router-dom';
 
-function ListingDetails(props) {
+function ListingDetails() {
   const [listingData, setListingData] = useState(null);
-  const id = props;
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,24 +25,26 @@ function ListingDetails(props) {
     fetchData();
   }, [id]);
 
-  if (!listingData) {
-    return <p>Loading...</p>;
-  }
-
   const contactOwner = () => {
-    const ownerEmail = listingData.email;
+    const ownerEmail = listingData ? listingData.email : '';
     window.location.href = `mailto:${ownerEmail}`;
   };
 
   return (
     <div className="listing-info">
-      <p>{listingData.name}</p>
-      <p>{listingData.condition}</p>
-      <p>{listingData.price}</p>
-      <p>{listingData.description}</p>
-      <button className="contact-owner-button" onClick={contactOwner}>
-        Contact Owner
-      </button>
+      {listingData ? (
+        <>
+          <p>{listingData.name}</p>
+          <p>{listingData.condition}</p>
+          <p>{listingData.price}</p>
+          <p>{listingData.description}</p>
+          <button className="contact-owner-button" onClick={contactOwner}>
+            Contact Owner
+          </button>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
