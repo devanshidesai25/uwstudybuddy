@@ -23,6 +23,11 @@ function Events() {
     e.preventDefault();
     try {
       const newData = { ...events };
+      const eventExists = joinedEvents.find(event => event.id === newData.id);
+      if (eventExists) {
+        alert('Event already added to Your Scheduled Events!');
+        return;
+      }
       push(ref(database, 'events'), newData)
         .then(() => {
           alert('Event saved successfully!');
@@ -43,6 +48,11 @@ function Events() {
 
   const handleJoinEvent = (eventId) => {
     const eventToJoin = events.find(event => event.id === eventId);
+    const eventExists = joinedEvents.find(event => event.id === eventId);
+    if (eventExists) {
+      alert('Event already added to Your Scheduled Events!');
+      return;
+    }
     setJoinedEvents(prevEvents => [...prevEvents, eventToJoin]);
   };
 
