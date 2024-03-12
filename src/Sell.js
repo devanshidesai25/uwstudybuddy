@@ -71,7 +71,7 @@ function Sell () {
       <Header />
       <div className="listing-container">
         <section id="add-listing">
-         <h2 id='submit-title'>Submit Your Profile</h2>
+         <h2 id='submit-title'>Have Something to Sell?</h2>
           <div className="listing-form">
             <form onSubmit={handleSubmit}>
               <label htmlFor="supplyType">Type of Supply</label>
