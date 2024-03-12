@@ -13,6 +13,10 @@ body {
     margin-bottom: 0;
  }
 
+ cite {
+  display: none;
+ }
+
  #main {
     padding-top: 30px;
  }
