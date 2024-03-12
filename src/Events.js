@@ -5,6 +5,7 @@ import Footer from './Footer';
 
 function Events() {
   const [events, setEvents] = useState([]);
+  const [joinedEvents, setJoinedEvents] = useState([]);
   const [chartInstance, setChartInstance] = useState(null);
 
   const handleEventSubmit = (e) => {
@@ -22,6 +23,13 @@ function Events() {
 
       setEvents((prevEvents) => [...prevEvents, newEvent]);
       e.target.reset();
+    }
+  };
+
+  const handleJoinEvent = (eventId) => {
+    const eventToJoin = events.find(event => event.id === eventId);
+    if (eventToJoin) {
+      setJoinedEvents(prevJoinedEvents => [...prevJoinedEvents, eventToJoin]);
     }
   };
 
@@ -82,9 +90,26 @@ function Events() {
 
         <section>
           <h2>Scheduled Events</h2>
+          <ul>
+            {events.map(event => (
+              <li key={event.id}>
+                {event.name} - {event.date}, {event.time} 
+                <button onClick={() => handleJoinEvent(event.id)}>Join</button>
+              </li>
+            ))}
+          </ul>
           <div>
             <canvas id="eventChart" width="400" height="200"></canvas>
           </div>
+        </section>
+
+        <section>
+          <h2>Your Upcoming Events</h2>
+          <ul>
+            {joinedEvents.map(event => (
+              <li key={event.id}>{event.name} - {event.date}, {event.time}</li>
+            ))}
+          </ul>
         </section>
       </div>
       <Footer />
