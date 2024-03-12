@@ -8,13 +8,13 @@ import profileLogo from './img/profile.png';
 import shopLogo from './img/shop.png';
 import sellLogo from './img/sell.png';
 import friendsLogo from './img/friends.png';
-import img1 from './img/image1.jpeg';
-import img2 from './img/image2.jpeg';
-import img3 from './img/image3.jpeg';
-import img4 from './img/image4.jpeg';
-import img5 from './img/image5.jpeg';
-import img6 from './img/image6.jpeg';
-import img7 from './img/image7.jpeg';
+import img1 from './img/image1.jpg';
+import img2 from './img/image2.jpg';
+import img3 from './img/image3.jpg';
+import img4 from './img/image4.jpg';
+import img5 from './img/image5.jpg';
+import img6 from './img/image6.jpg';
+import img7 from './img/image7.jpg';
 
 function HomePage() {
 
@@ -26,13 +26,13 @@ function HomePage() {
         <h4 className='welcome'>Unlock Your Learning Legacy: Connect, Sell, Succeed!</h4>
 
         <ul class='banner'>
-            <li><img src={img1} alt="campusImage" /></li>
-            <li><img src={img2} alt="campusImage" /></li>
-            <li><img src={img3} alt="campusImage" /></li>
-            <li><img src={img4} alt="campusImage" /></li>
-            <li><img src={img5} alt="campusImage" /></li>
-            <li><img src={img6} alt="campusImage" /></li>
-            <li><img src={img7} alt="campusImage" /></li>
+            <li><img src={img1} alt="man-in-grad-gown" /><cite><a href="https://unsplash.com/photos/man-wearing-academic-gown-2RouMSg9Rnw">Source for Image 1</a></cite></li>
+            <li><img src={img2} alt="college-campus-building" /><cite><a href="https://unsplash.com/photos/brown-concrete-building-1iuxWsIZ6ko">Source for Image 2</a></cite></li>
+            <li><img src={img3} alt="students-in-library" /><cite><a href="https://unsplash.com/photos/group-of-people-inside-the-library-CyvK_Z2pYXg">Source for Image 3</a></cite></li>
+            <li><img src={img4} alt="college-event" /><cite><a href="https://unsplash.com/photos/laughing-people-in-party-fIHozNWfcvs">Source for Image 4</a></cite></li>
+            <li><img src={img5} alt="college-lab" /><cite><a href="https://www.istockphoto.com/photo/technical-college-students-exchanging-ideas-gm1455935808-491120522?utm_source=pixabay&utm_medium=affiliate&utm_campaign=SRP_image_sponsored&utm_content=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fcollege%2520lab%2F&utm_term=college+lab">Source for Image 5</a></cite></li>
+            <li><img src={img6} alt="school-supplies" /><cite><a href="https://unsplash.com/photos/flat-lay-photography-of-blue-backpack-beside-book-and-silver-macbook-02z1I7gv4ao">Source for Image 6</a></cite></li>
+            <li><img src={img7} alt="college-campus" /><cite><a href="https://unsplash.com/photos/black-bicycle-parked-in-front-of-building-cXUOQWdRV4I">Source for Image 7</a></cite></li>
         </ul>
 
         <div className="home-btns">
@@ -85,3 +85,4 @@ function HomePage() {
 }
 
 export default HomePage;
+
