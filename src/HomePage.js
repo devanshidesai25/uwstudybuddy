@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import Header from './Header';
 import Footer from './Footer';
-import studyBuddyLogo from './img/studybuddy-logo.png';
 import profileLogo from './img/profile.png';
 import shopLogo from './img/shop.png';
 import sellLogo from './img/sell.png';
@@ -52,8 +51,8 @@ function HomePage() {
             <li>
               <Link to="/profile">
                 <img src={profileLogo} alt="Profile Logo" />
-                <span>Find Friends</span>
-                <p>Connect with peers!</p>
+                <span>Create Profile</span>
+                <p>Start building connections!</p>
               </Link>
             </li>
             <li>
@@ -73,8 +72,8 @@ function HomePage() {
             <li>
               <Link to="/friends">
                 <img src={friendsLogo} alt="Friends Logo" />
-                <span>Alumni</span>
-                <p>Connect with alumni!</p>
+                <span>Find Friends</span>
+                <p>Connect with peers!</p>
               </Link>
             </li>
           </ul>

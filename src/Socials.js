@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
-const SocialMediaIcons = () => {
+function SocialMediaIcons ()  {
   return (
     <div className="social-icons">
       <a href="https://www.https://www.facebook.com/UofWA/" target="_blank" rel="noopener noreferrer">

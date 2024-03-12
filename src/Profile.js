@@ -3,7 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import { getDatabase, ref, push } from 'firebase/database';
 
-const ProfileForm = () => {
+function ProfileForm () {
   const database = getDatabase();
 
   const [formData, setFormData] = useState({
