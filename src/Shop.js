@@ -1,42 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, get } from 'firebase/database';
+import { getDatabase, ref, get, set } from 'firebase/database';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-function ListingCard({ id, name, image, price }) {
+function ListingCard({ id, name, image, price, isFavorited, onToggleFavorite}) {
+  const handleHeartClick = async () => {
+    onToggleFavorite(id);
+    const database = getDatabase();
+    const supplyRef = ref(database, `supplyListings/${id}/favorited`);
+    await set(supplyRef, !isFavorited);
+  };
+
   return (
-  <div key={id} className="textbook-item-container">
-    <img src={image} alt={`${name}`} />
-    <ul>
-      <li><h3>{name}</h3></li>
-      <li><h6>${price}</h6></li>
-    </ul>
-    <div className="more-details-wrapper">
-      <Link to={`/listing/${id}`}>
-        <button>
-          View Full Listing
-        </button>
-      </Link>
+    <div key={id} className="textbook-item-container">
+      <img src={image} alt={`${name}`} />
+      <ul>
+        <li><h3>{name}</h3></li>
+        <li><h6>${price}</h6></li>
+      </ul>
+      <div className="more-details-wrapper">
+        <Link to={`/listing/${id}`}>
+          <button>
+            View Full Listing
+          </button>
+        </Link>
+      </div>
+      <button className={`heart-button ${isFavorited ? 'favorited' : ''}`} onClick={handleHeartClick}>
+        <FontAwesomeIcon icon={faHeart} />
+      </button>
     </div>
-  </div>
-  )
-};
+  );
+}
 
 function Shop() {
   const [listings, setListings] = useState([]);
   const [selectedSupplyType, setType] = useState('All');
-
-  const filterListings = (listings) => {
-    return listings.filter((listing) => {
-      if (selectedSupplyType !== 'All' && listing.supplyType !== selectedSupplyType) {
-        return false;
-      }
-      return true;
-    });
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,6 +58,37 @@ function Shop() {
 
   const handleDropdownChange = (event) => {
     setType(event.target.value);
+  };
+
+  const filterListings = (listings) => {
+    return listings.filter((listing) => {
+      if (selectedSupplyType !== 'All' && listing.supplyType !== selectedSupplyType) {
+        return false;
+      }
+      return true;
+    });
+  };
+
+  const chooseFavorites = async (id) => {
+    const updatedListings = listings.map(listing => {
+      if (listing.id === id) {
+        const updatedListing = { ...listing, favorited: !listing.favorited };
+        
+        updateFavorited(id, updatedListing);
+        if (updatedListing.favorited) {
+          alert(`Listing "${updatedListing.name}" favorited! View in your favorites`);
+        }
+        return updatedListing;
+      }
+      return listing;
+    });
+    setListings(updatedListings);
+  };
+
+  const updateFavorited = (id, supplyListings) => {
+    const database = getDatabase();
+    const supplyRef = ref(database, `supplyListings/${id}`);
+    set(supplyRef, supplyListings);
   };
 
   const filteredListings = filterListings(listings);
@@ -85,6 +117,8 @@ function Shop() {
                 name={listing.name}
                 image={listing.image}
                 price={listing.price}
+                isFavorited={listing.favorited}
+                onToggleFavorite={chooseFavorites}
               />
             ))}
           </section>
@@ -96,4 +130,3 @@ function Shop() {
 }
 
 export default Shop;
-

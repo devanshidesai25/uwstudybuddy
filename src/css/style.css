@@ -646,3 +646,33 @@ button[type="goback"] {
     padding-bottom: 10px;
   }
   
+
+  .textbook-item-container {
+    position: relative;
+  }
+  
+  textbook-item-container {
+    position: relative;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+
+  .heart-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: #d5b8f0;
+    padding: 5px;
+  }
+  
+  .heart-button.favorited {
+    border-color: white; 
+    background-color: rgb(79, 0, 139); 
+    color: white;
+  }
