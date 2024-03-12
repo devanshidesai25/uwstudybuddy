@@ -3,6 +3,27 @@ import { getDatabase, ref, get } from 'firebase/database';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
+function ListingCard({ id, name, image, price }) {
+  return (
+  <div key={id} className="textbook-item-container">
+    <img src={image} alt={`${name}`} />
+    <ul>
+      <li><h3>{name}</h3></li>
+      <li><h6>${price}</h6></li>
+    </ul>
+    <div className="more-details-wrapper">
+      <Link to={`/listing/${id}`}>
+        <button>
+          View Full Listing
+        </button>
+      </Link>
+    </div>
+  </div>
+  )
+};
 
 function Shop() {
   const [listings, setListings] = useState([]);
@@ -58,20 +79,13 @@ function Shop() {
         <div className="listings-container">
           <section className="textbook-listings">
             {filteredListings.map((listing) => (
-              <div key={listing.id} className="textbook-item-container">
-                <img src={listing.image} alt={`${listing.name}`} />
-                <ul>
-                  <li><h3>{listing.name}</h3></li>
-                  <li><h6>${listing.price}</h6></li>
-                </ul>
-                <div className="more-details-wrapper">
-                  <Link to={`/listing/${listing.id}`}>
-                    <button>
-                      View Full Listing
-                    </button>
-                  </Link>
-                </div>
-              </div>
+              <ListingCard
+                key={listing.id}
+                id={listing.id}
+                name={listing.name}
+                image={listing.image}
+                price={listing.price}
+              />
             ))}
           </section>
         </div>
@@ -82,3 +96,4 @@ function Shop() {
 }
 
 export default Shop;
+
