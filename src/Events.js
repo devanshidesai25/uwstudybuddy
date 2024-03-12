@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
+import Header from './Header';
+import Footer from './Footer';
 
 function Events() {
   const [events, setEvents] = useState([]);
@@ -54,35 +56,38 @@ function Events() {
     setChartInstance(newChartInstance);
   };
 
-  // Trigger chart drawing on component mount and when events change
   useEffect(() => {
     drawChart();
   }, [events]);
 
   return (
-    <div className="events-container">
-      <section>
-        <h2>Create Event</h2>
-        <form onSubmit={handleEventSubmit}>
-          <label htmlFor="eventName">Event Name:</label>
-          <input type="text" id="eventName" name="eventName" required />
+    <div>
+      <Header />
+      <div className="events-container">
+        <section>
+          <h2>Create Event</h2>
+          <form onSubmit={handleEventSubmit}>
+            <label htmlFor="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" required />
 
-          <label htmlFor="eventDate">Event Date:</label>
-          <input type="date" id="eventDate" name="eventDate" required />
+            <label htmlFor="eventDate">Event Date:</label>
+            <input type="date" id="eventDate" name="eventDate" required />
 
-          <label htmlFor="eventTime">Event Time:</label>
-          <input type="time" id="eventTime" name="eventTime" required />
+            <label htmlFor="eventTime">Event Time:</label>
+            <input type="time" id="eventTime" name="eventTime" required />
 
-          <button type="submit">Create Event</button>
-        </form>
-      </section>
+            <button type="submit">Create Event</button>
+          </form>
+        </section>
 
-      <section>
-        <h2>Scheduled Events</h2>
-        <div>
-          <canvas id="eventChart" width="400" height="200"></canvas>
-        </div>
-      </section>
+        <section>
+          <h2>Scheduled Events</h2>
+          <div>
+            <canvas id="eventChart" width="400" height="200"></canvas>
+          </div>
+        </section>
+      </div>
+      <Footer />
     </div>
   );
 }

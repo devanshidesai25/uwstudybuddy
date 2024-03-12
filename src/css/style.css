@@ -700,7 +700,6 @@ button[type="goback"] {
     justify-content: center;
     align-items: center;
   }
-  
 
   .home-btns {
     margin-top: 30px;
@@ -713,4 +712,52 @@ button[type="goback"] {
   .social-icons a {
     margin: 0 10px;
     color: #380565;
+  }
+
+  .events-container {
+    margin-top: 50px; 
+  }
+  
+  .events-container section {
+    margin-bottom: 50px; 
+  }
+  
+  .events-container h2 {
+    color: #32312f;
+  }
+  
+  .events-container form {
+    margin-top: 20px;
+  }
+  
+  .events-container form label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .events-container form input,
+  .events-container form select {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+  }
+  
+  .events-container form button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #D0B9F9;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .events-container form button:hover {
+    background-color: #D0B9F9;
+    opacity: 50%;
+  }
+  
+  .events-container canvas {
+    max-width: 100%; 
+    height: auto; 
   }
