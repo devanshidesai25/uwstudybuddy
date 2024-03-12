@@ -8,12 +8,9 @@ function Events() {
   const [chartInstance, setChartInstance] = useState(null);
   const database = getDatabase();
   
-  const [events, setEvents] = useState({
-    eventName: '',
-    eventDate: '',
-    eventTime: '',
-  });
-  
+  const [events, setEvents] = useState([]);
+  const [joinedEvents, setJoinedEvents] = useState([]);
+
   const handleTextChange = (event) => {
     const { name, value } = event.target;
     setEvents((prevData) => ({
@@ -42,6 +39,11 @@ function Events() {
       console.error('Error:', error);
       alert('An error occurred. Please try again later.');
     }
+  };
+
+  const handleJoinEvent = (eventId) => {
+    const eventToJoin = events.find(event => event.id === eventId);
+    setJoinedEvents(prevEvents => [...prevEvents, eventToJoin]);
   };
 
   useEffect(() => {
@@ -115,10 +117,29 @@ function Events() {
         </section>
 
         <section>
-          <h2>Scheduled Events</h2>
+          <h2>StuddyBuddyUW Events</h2>
           <div>
             <canvas id="eventChart" width="400" height="200"></canvas>
+            <ul>
+              {events.map(event => (
+                <li key={event.id}>
+                  {event.eventName} - {event.eventDate} - {event.eventTime}
+                  <button onClick={() => handleJoinEvent(event.id)}>Join Event</button>
+                </li>
+              ))}
+            </ul>
           </div>
+        </section>
+
+        <section>
+          <h2>Your Scheduled Events</h2>
+          <ul>
+            {joinedEvents.map(event => (
+              <li key={event.id}>
+                {event.eventName} - {event.eventDate} - {event.eventTime}
+              </li>
+            ))}
+          </ul>
         </section>
       </div>
       <Footer />
@@ -127,4 +148,3 @@ function Events() {
 }
 
 export default Events;
-
