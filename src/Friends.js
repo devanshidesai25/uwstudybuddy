@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import profiles from './profileData';
+import { getDatabase, ref, get } from 'firebase/database';
 
 function FriendItem({ friend, handleSendEmail, isSelected, toggleSelection }) {
   const sendEmail = () => {
@@ -31,11 +31,27 @@ function Friends() {
     email: '',
     bio: ''
   });
+
   const [searchResults, setSearchResults] = useState([]);
   const [selectedProfiles, setSelectedProfiles] = useState([]);
 
   useEffect(() => {
-    setSearchResults(profiles);
+    const fetchData = async () => {
+      const database = getDatabase();
+      const snapshot = await get(ref(database, 'profileData'));
+
+      if (snapshot.exists()) {
+        const data = [];
+        snapshot.forEach((childSnapshot) => {
+          data.push({ id: childSnapshot.key, ...childSnapshot.val() });
+        });
+        setSearchResults(data);
+      } else {
+        console.log('No data available');
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleInputChange = (e) => {
@@ -49,19 +65,15 @@ function Friends() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const filteredProfiles = profiles.filter((profile) => {
+    const filteredProfiles = searchResults.filter((profile) => {
       const majorMatch =
-        !searchCriteria.major ||
-        profile.major.toLowerCase().includes(searchCriteria.major.toLowerCase());
+        !searchCriteria.major || profile.major.toLowerCase().includes(searchCriteria.major.toLowerCase());
       const gradeMatch =
-        !searchCriteria.grade ||
-        profile.grade.toLowerCase() === searchCriteria.grade.toLowerCase();
+        !searchCriteria.grade || profile.grade.toLowerCase() === searchCriteria.grade.toLowerCase();
       const emailMatch =
-        !searchCriteria.email ||
-        profile.email.toLowerCase().includes(searchCriteria.email.toLowerCase());
+        !searchCriteria.email || profile.email.toLowerCase().includes(searchCriteria.email.toLowerCase());
       const bioMatch =
-        !searchCriteria.bio ||
-        profile.bio.toLowerCase().includes(searchCriteria.bio.toLowerCase());
+        !searchCriteria.bio || profile.bio.toLowerCase().includes(searchCriteria.bio.toLowerCase());
 
       return majorMatch && gradeMatch && emailMatch && bioMatch;
     });
@@ -84,16 +96,14 @@ function Friends() {
       alert('Please select at least one profile to send an email.');
       return;
     }
-  
-    const emailList = selectedProfiles.map(friend => friend.email).join(',');
+
+    const emailList = selectedProfiles.map((friend) => friend.email).join(',');
     const subject = 'Your Subject';
     const body = 'Your email body content.';
     const mailtoLink = `mailto:${emailList}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  
+
     window.location.href = mailtoLink;
   };
-  
-
 
   return (
     <div>
@@ -101,25 +111,14 @@ function Friends() {
 
       <div className="friends-container">
         <section className="alumni-search">
-          <h1 className="friends-header">Connect with Alumni!</h1>
+          <h1 className="friends-header">Find Friends!</h1>
 
           <form onSubmit={handleSubmit} className="friends-form">
             <label htmlFor="major">Major:</label>
-            <input
-              type="text"
-              id="major"
-              name="major"
-              onChange={handleInputChange}
-              value={searchCriteria.major}
-            />
+            <input type="text" id="major" name="major" onChange={handleInputChange} value={searchCriteria.major} />
 
             <label htmlFor="grade">Grade:</label>
-            <select
-              id="grade"
-              name="grade"
-              onChange={handleInputChange}
-              value={searchCriteria.grade}
-            >
+            <select id="grade" name="grade" onChange={handleInputChange} value={searchCriteria.grade}>
               <option value="">Select Grade</option>
               <option value="Freshman">Freshman</option>
               <option value="Sophomore">Sophomore</option>
@@ -128,13 +127,7 @@ function Friends() {
             </select>
 
             <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              onChange={handleInputChange}
-              value={searchCriteria.email}
-            />
+            <input type="email" id="email" name="email" onChange={handleInputChange} value={searchCriteria.email} />
 
             <button type="submit">Search</button>
           </form>
@@ -160,20 +153,6 @@ function Friends() {
           ))
         )}
       </div>
-
-      {!searchCriteria.major && !searchCriteria.grade && !searchCriteria.email && !searchCriteria.bio && (
-        <div id="allFriends" style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {profiles.map((profile) => (
-            <FriendItem
-              key={profile.id}
-              friend={profile}
-              handleSendEmail={handleSendEmail}
-              isSelected={selectedProfiles.some((p) => p.id === profile.id)}
-              toggleSelection={() => toggleProfileSelection(profile)}
-            />
-          ))}
-        </div>
-      )}
 
       <Footer />
     </div>
