@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import profiles from './profileData';
+import { getDatabase, ref, push } from 'firebase/database';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const ProfileForm = () => {
+  const database = getDatabase();
+  const storage = getStorage();
+
   const [formData, setFormData] = useState({
     name: '',
     image: null,
@@ -13,9 +17,6 @@ const ProfileForm = () => {
     bio: ''
   });
 
-  const [filteredProfiles, setFilteredProfiles] = useState([]);
-  const [selectedProfiles, setSelectedProfiles] = useState([]);
-
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData(prevState => ({
@@ -24,63 +25,41 @@ const ProfileForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      localStorage.setItem('profileData', JSON.stringify(formData));
-      alert('Profile saved successfully!');
-      setFormData({
-        name: '',
-        image: null,
-        major: '',
-        grade: '',
-        email: '',
-        bio: ''
-      });
+      const imageRef = storageRef(storage, `images/${formData.image.name}`);
+      await uploadBytes(imageRef, formData.image);
+      const imageURL = await getDownloadURL(imageRef);
 
-      const filtered = profiles.filter(profile =>
-        profile.major === formData.major || profile.grade === formData.grade
-      );
-      setFilteredProfiles(filtered);
+      const newData = { ...formData, image: imageURL };
+      push(ref(database, 'profileData'), newData)
+        .then(() => {
+          alert('Profile saved successfully!');
+          setFormData({
+            name: '',
+            image: null,
+            major: '',
+            grade: '',
+            email: '',
+            bio: ''
+          });
+        })
+        .catch((error) => {
+          console.error('Error saving profile:', error);
+          alert('Error saving profile. Please try again later.');
+        });
     } catch (error) {
-      console.error('Error saving profile:', error);
-      alert('Error saving profile. Please try again later.');
+      console.error('Error uploading image:', error);
+      alert('Error uploading image. Please try again later.');
     }
   };
-
-  const handleProfileClick = (profile) => {
-    if (isProfileSelected(profile)) {
-      setSelectedProfiles(prevSelected => prevSelected.filter(p => p.id !== profile.id));
-    } else {
-      setSelectedProfiles(prevSelected => [...prevSelected, profile]);
-    }
-  };
-
-  const isProfileSelected = (profile) => {
-    return selectedProfiles.includes(profile);
-  };
-
-  const handleSendEmail = () => {
-    if (selectedProfiles.length === 0) {
-      alert('Please select at least one profile to send an email.');
-      return;
-    }
-    
-    const emailList = selectedProfiles.map(profile => profile.email).join(';');
-    const subject = 'Your Subject';
-    const body = 'Your email body content.';
-    const mailtoLink = `mailto:${emailList}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    window.location.href = mailtoLink;
-  };
-  
 
   return (
     <div>
       <Header />
       <div className="profile-container">
-        <h2 id='submit-title'>Submit Your Profile</h2>
-        <p id='desc'>Once you submit, scroll down to view recommended profiles based on your year & major!</p>
+        <h2 id='submit-title'>Submit Your Profile!</h2>
         <form className="profile-form" onSubmit={handleSubmit}>
           <div>
             <label>Name:</label>
@@ -88,7 +67,7 @@ const ProfileForm = () => {
           </div>
           <div>
             <label>Image:</label>
-            <input type="file" name="image" accept="image/*" onChange={handleChange} />
+            <input type="file" name="image" accept="image/*" onChange={handleChange} required />
           </div>
           <div>
             <label>Major:</label>
@@ -96,7 +75,7 @@ const ProfileForm = () => {
           </div>
           <div>
             <label>Email:</label>
-            <input type="email" name={`email-${formData.id}`} value={formData[`email-${formData.id}`]} onChange={handleChange} required />
+            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
           </div>
           <div>
             <label>Grade:</label>
@@ -111,31 +90,8 @@ const ProfileForm = () => {
             <label>Bio:</label>
             <textarea name="bio" value={formData.bio} onChange={handleChange}></textarea>
           </div>
-          <button type="submit">Find Friends!</button>
-          <p id='desc2'>After submitting, click on which profiles you'd like to contact. Email one at a time, or select multiple profile cards and click the email button on any of them to send a group email!</p>
+          <button type="submit">Submit!</button>
         </form>
-      </div>
-      <div>
-        {filteredProfiles.length > 0 && (
-          <div className='allCards'>
-            {filteredProfiles.map(profile => (
-              <div
-                key={profile.id}
-                className={`card ${isProfileSelected(profile) ? 'selected' : ''}`}
-                onClick={() => handleProfileClick(profile)}
-              >
-                <div className="card-body">
-                  <h5 className="card-title">{profile.name}</h5>
-                  <p className="card-text">Major: {profile.major}</p>
-                  <p className="card-text">Email: {profile.email}</p>
-                  <p className="card-text">Grade: {profile.grade}</p>
-                  <p className="card-text">Bio: {profile.bio}</p>
-                  <button onClick={handleSendEmail}>Send an Email!</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
       <Footer />
     </div>
@@ -143,3 +99,4 @@ const ProfileForm = () => {
 };
 
 export default ProfileForm;
+
