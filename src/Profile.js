@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { getDatabase, ref, push } from 'firebase/database';
+import { useNavigate } from 'react-router-dom';
+
 
 function ProfileForm () {
   const database = getDatabase();
+  const navigate = useNavigate();
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -46,6 +50,7 @@ function ProfileForm () {
       console.error('Error:', error);
       alert('An error occurred. Please try again later.');
     }
+    navigate('./friends');
   };
 
   return (

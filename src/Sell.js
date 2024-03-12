@@ -3,10 +3,14 @@ import Footer from './Footer';
 import { getDatabase, ref, push } from 'firebase/database';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 function Sell () {
   const database = getDatabase();
   const storage = getStorage();
+  const navigate = useNavigate();
+
 
   const saveSupplyListingToDatabase = async (supplyData) => {
     const imageRef = storageRef(storage, `images/${supplyData.image.name}`);
@@ -63,6 +67,7 @@ function Sell () {
       email: '',
       image: null,
     });
+    navigate('/shop');
   };
 
 

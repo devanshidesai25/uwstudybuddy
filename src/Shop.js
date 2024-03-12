@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 function ListingCard({ id, name, image, price, isFavorited, onToggleFavorite}) {
+  
   const handleHeartClick = async () => {
     onToggleFavorite(id);
     const database = getDatabase();
