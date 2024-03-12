@@ -57,7 +57,7 @@ function HomePage() {
               </Link>
             </li>
             <li>
-              <Link to="/availablelistings">
+              <Link to="/shop">
                 <img src={shopLogo} alt="Shop Logo" />
                 <span>Shop</span>
                 <p>Shop from other students!</p>
