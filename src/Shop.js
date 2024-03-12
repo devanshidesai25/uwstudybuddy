@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, get, set } from 'firebase/database';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,11 +9,16 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 function ListingCard({ id, name, image, price, isFavorited, onToggleFavorite}) {
   
+  const navigate = useNavigate();
+
   const handleHeartClick = async () => {
     onToggleFavorite(id);
     const database = getDatabase();
     const supplyRef = ref(database, `supplyListings/${id}/favorited`);
     await set(supplyRef, !isFavorited);
+    if (!isFavorited){
+      navigate('/favorites');
+    }
   };
 
   return (
