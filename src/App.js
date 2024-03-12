@@ -5,6 +5,7 @@ import Shop from './Shop';
 import Sell from './Sell';
 import Profile from './Profile';
 import Friends from './Friends';
+import Favorites from './ViewFavorites'
 import ListingDetails from './ListingDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/style.css';
@@ -19,6 +20,7 @@ function App() {
       <Route path="/friends" element={<Friends />} />
       <Route path="/shop" element={<Shop/>} />
       <Route path="/listing/:id" element={<ListingDetails/> } />
+      <Route path="/favorites" element={<Favorites/>} />
     </Routes>
   );
 }
