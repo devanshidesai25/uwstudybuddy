@@ -28,7 +28,7 @@ function Events() {
 
   const handleJoinEvent = (eventId) => {
     const eventToJoin = events.find(event => event.id === eventId);
-    if (eventToJoin) {
+    if (eventToJoin && !joinedEvents.some(event => event.id === eventId)) {
       setJoinedEvents(prevJoinedEvents => [...prevJoinedEvents, eventToJoin]);
     }
   };
