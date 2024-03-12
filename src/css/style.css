@@ -11,14 +11,6 @@ body {
   margin-bottom: 0;
 }
 
-#main {
-  padding-top: 30px;
-}
-
-cite {
-  display: none; 
-}
-
 .menu-bar img {
   display: block;
   margin-left: auto;
@@ -26,6 +18,52 @@ cite {
   max-width: 100px;
   max-height: 100px;
   margin-left: 70px;
+}
+
+.menu-bar {
+  margin: 0px;
+  display: block;
+  background-color: #4D307F;
+  font-size: larger;
+  text-align: center;
+  align-items: flex-start;
+  justify-content: left;
+  padding: 5px 10px;
+}
+
+#title {
+  font-weight: bold;
+  font-size: larger;
+  word-spacing: 2px;
+  letter-spacing: 2px;
+  color: #eee7ff;
+}
+
+.menu-bar ul {
+  padding: 10px;
+  list-style-type: none;
+  word-spacing: 30px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.menu-bar li {
+  margin-right: 30px;
+}
+
+.menu-bar a {
+  text-decoration: none;
+  color: #fff;
+}
+
+
+#main {
+  padding-top: 30px;
+}
+
+cite {
+  display: none; 
 }
 
 .welcome {
@@ -78,42 +116,6 @@ img {
   max-height: 200px;
 }
 
-.menu-bar {
-  margin: 0px;
-  display: block;
-  background-color: #4D307F;
-  font-size: larger;
-  text-align: center;
-  align-items: flex-start;
-  justify-content: left;
-  padding: 5px 10px;
-}
-
-#title {
-  font-weight: bold;
-  font-size: larger;
-  word-spacing: 2px;
-  letter-spacing: 2px;
-  color: #eee7ff;
-}
-
-.menu-bar ul {
-  padding: 10px;
-  list-style-type: none;
-  word-spacing: 30px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-}
-
-.menu-bar li {
-  margin-right: 30px;
-}
-
-.menu-bar a {
-  text-decoration: none;
-  color: #fff;
-}
 
 @media (min-width: 768px) {
   .homepage-img {
@@ -144,7 +146,6 @@ h4 {
   margin-bottom: 20px; 
   margin-top: 10px;
 }
-
 
 main {
   flex: 1; 
