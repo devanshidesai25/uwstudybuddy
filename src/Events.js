@@ -2,71 +2,97 @@ import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import Header from './Header';
 import Footer from './Footer';
+import { getDatabase, ref, push, get } from 'firebase/database';
 
 function Events() {
-  const [events, setEvents] = useState([]);
-  const [joinedEvents, setJoinedEvents] = useState([]);
   const [chartInstance, setChartInstance] = useState(null);
+  const database = getDatabase();
+  
+  const [events, setEvents] = useState({
+    eventName: '',
+    eventDate: '',
+    eventTime: '',
+  });
+  
+  const handleTextChange = (event) => {
+    const { name, value } = event.target;
+    setEvents((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-  const handleEventSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { eventName, eventDate, eventTime } = e.target.elements;
-
-    if (eventName.value && eventDate.value && eventTime.value) {
-      const newEvent = {
-        id: events.length + 1,
-        name: eventName.value,
-        date: eventDate.value,
-        time: eventTime.value,
-      };
-
-      setEvents((prevEvents) => [...prevEvents, newEvent]);
-      e.target.reset();
+    try {
+      const newData = { ...events };
+      push(ref(database, 'events'), newData)
+        .then(() => {
+          alert('Event saved successfully!');
+          setEvents({
+            eventName: '',
+            eventDate: '',
+            eventTime: '',
+          });
+        })
+        .catch((error) => {
+          alert('Error saving event. Please try again later.');
+        });
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.');
     }
-  };
-
-  const handleJoinEvent = (eventId) => {
-    const eventToJoin = events.find(event => event.id === eventId);
-    if (eventToJoin && !joinedEvents.some(event => event.id === eventId)) {
-      setJoinedEvents(prevJoinedEvents => [...prevJoinedEvents, eventToJoin]);
-    }
-  };
-
-  const drawChart = () => {
-    const counts = events.reduce((acc, event) => {
-      acc[event.date] = (acc[event.date] || 0) + 1;
-      return acc;
-    }, {});
-
-    const ctx = document.getElementById('eventChart').getContext('2d');
-
-    // Check if a chart instance exists and destroy it
-    if (chartInstance) {
-      chartInstance.destroy();
-    }
-
-    // Create a new Chart instance and set it to state
-    const newChartInstance = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: Object.keys(counts),
-        datasets: [{
-          label: 'Events',
-          data: Object.values(counts),
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1,
-        }],
-      },
-    });
-
-    setChartInstance(newChartInstance);
   };
 
   useEffect(() => {
-    drawChart();
-  }, [events]);
+    const drawChart = (eventsData) => {
+      const counts = eventsData.reduce((acc, event) => {
+        const date = event.eventDate;
+        acc[date] = (acc[date] || 0) + 1;
+        return acc;
+      }, {});
+  
+      const dates = Object.keys(counts).sort();
+      const data = dates.map(date => counts[date]);
+  
+      const ctx = document.getElementById('eventChart').getContext('2d');
+  
+      const newChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: dates,
+          datasets: [{
+            label: 'Events',
+            data: data,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          }],
+        },
+      });
+      setChartInstance(newChartInstance);
+    };
+  
+    const fetchEvents = async () => {
+      try {
+        const eventsRef = ref(database, 'events');
+        const snapshot = await get(eventsRef);
+        const eventsData = [];
+  
+        if (snapshot.exists()) {
+          snapshot.forEach((childSnapshot) => {
+            eventsData.push({ id: childSnapshot.key, ...childSnapshot.val() });
+          });
+          setEvents(eventsData);
+          drawChart(eventsData); 
+        }
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+  
+    fetchEvents();
+  }, []); 
 
   return (
     <div>
@@ -74,15 +100,15 @@ function Events() {
       <div className="events-container">
         <section>
           <h2>Create Event</h2>
-          <form onSubmit={handleEventSubmit}>
-            <label htmlFor="eventName">Event Name:</label>
-            <input type="text" id="eventName" name="eventName" required />
+          <form className="event-form" onSubmit={handleSubmit}>
+            <label htmlFor="eventName">Event Name</label>
+            <input type="text" name="eventName" value={events.eventName} onChange={handleTextChange} required />
 
-            <label htmlFor="eventDate">Event Date:</label>
-            <input type="date" id="eventDate" name="eventDate" required />
+            <label htmlFor="eventDate">Event Date</label>
+            <input type="date" name="eventDate" value={events.eventDate} onChange={handleTextChange} required />
 
-            <label htmlFor="eventTime">Event Time:</label>
-            <input type="time" id="eventTime" name="eventTime" required />
+            <label htmlFor="eventTime">Event Time</label>
+            <input type="time" name="eventTime" value={events.eventTime} onChange={handleTextChange} required />
 
             <button type="submit">Create Event</button>
           </form>
@@ -90,26 +116,9 @@ function Events() {
 
         <section>
           <h2>Scheduled Events</h2>
-          <ul>
-            {events.map(event => (
-              <li key={event.id}>
-                {event.name} - {event.date}, {event.time} 
-                <button onClick={() => handleJoinEvent(event.id)}>Join</button>
-              </li>
-            ))}
-          </ul>
           <div>
             <canvas id="eventChart" width="400" height="200"></canvas>
           </div>
-        </section>
-
-        <section>
-          <h2>Your Upcoming Events</h2>
-          <ul>
-            {joinedEvents.map(event => (
-              <li key={event.id}>{event.name} - {event.date}, {event.time}</li>
-            ))}
-          </ul>
         </section>
       </div>
       <Footer />
@@ -118,3 +127,4 @@ function Events() {
 }
 
 export default Events;
+
