@@ -7,7 +7,6 @@ function Header() {
     <div className="menu-bar"> 
       <ul>
         <li><Link to="/"><img src={studyBuddyLogo} alt="Study Buddy Logo" className="logo" /></Link></li>
-        <li><Link to="/">Home</Link></li>
         <li><Link to="/profile">Profile</Link></li> 
         <li><Link to="/friends">Friends</Link></li> 
         <li><Link to="/shop">Shop</Link></li> 
@@ -20,4 +19,3 @@ function Header() {
 }
 
 export default Header;
-

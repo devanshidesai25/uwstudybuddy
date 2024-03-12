@@ -4,12 +4,9 @@ import Footer from './Footer';
 import { getDatabase, ref, push } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
 
-
-function ProfileForm () {
+function ProfileForm() {
   const database = getDatabase();
-  
   const navigate = useNavigate();
-
 
   const [formData, setFormData] = useState({
     name: '',
@@ -73,14 +70,14 @@ function ProfileForm () {
             <input type="email" name="email" value={formData.email} onChange={handleChange} required />
           </div>
           <div>
-          <label htmlFor="grade">Grade</label>
-              <select name="grade" className="grade-picker" value={formData.grade} onChange={handleChange} required>
-                <option value="">Select your grade</option>
-                <option>Freshman</option>
-                <option>Sophomore</option>
-                <option>Junior</option>
-                <option>Senior</option>
-              </select>
+            <label htmlFor="grade">Grade</label>
+            <select name="grade" className="grade-picker" value={formData.grade} onChange={handleChange} required>
+              <option value="">Select your grade</option>
+              <option>Freshman</option>
+              <option>Sophomore</option>
+              <option>Junior</option>
+              <option>Senior</option>
+            </select>
           </div>
           <div>
             <label>Bio:</label>
@@ -92,7 +89,6 @@ function ProfileForm () {
       <Footer />
     </div>
   );
-};
+}
 
 export default ProfileForm;
-

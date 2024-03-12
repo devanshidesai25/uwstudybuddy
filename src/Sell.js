@@ -1,16 +1,14 @@
-import Header from './Header'; 
+import React, { useState } from 'react';
+import Header from './Header';
 import Footer from './Footer';
 import { getDatabase, ref, push } from 'firebase/database';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-function Sell () {
+function Sell() {
   const database = getDatabase();
   const storage = getStorage();
   const navigate = useNavigate();
-
 
   const saveSupplyListingToDatabase = async (supplyData) => {
     const imageRef = storageRef(storage, `images/${supplyData.image.name}`);
@@ -32,7 +30,7 @@ function Sell () {
   };
 
   const [formData, setFormData] = useState({
-    supplyType: '', 
+    supplyType: '',
     condition: '',
     description: '',
     price: '',
@@ -70,13 +68,12 @@ function Sell () {
     navigate('/shop');
   };
 
-
   return (
     <div>
       <Header />
       <div className="listing-container">
         <section id="add-listing">
-         <h2 id='submit-title'>Have Something to Sell?</h2>
+          <h2 id='submit-title'>Have Something to Sell?</h2>
           <div className="listing-form">
             <form onSubmit={handleSubmit}>
               <label htmlFor="supplyType">Type of Supply</label>
@@ -143,7 +140,7 @@ function Sell () {
                 onChange={handleInputChange} required
               />
 
-            <label htmlFor="email">Email:</label>
+              <label htmlFor="email">Email:</label>
               <input
                 type="text"
                 id="email"
@@ -160,6 +157,6 @@ function Sell () {
       <Footer />
     </div>
   );
-};
+}
 
 export default Sell;

@@ -35,7 +35,7 @@ body {
   list-style-type: none;
   word-spacing: 30px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
 } 
 
@@ -72,7 +72,7 @@ body {
     margin: 0px;
     display: block;
     background-color: #4D307F;
-    font-size: larger;
+    font-size: large;
     text-align: center;
     align-items: flex-start;
     justify-content: left;
@@ -193,10 +193,6 @@ img {
   max-width: 200px;
   max-height: 200px;
 }
-
-
-
-
 
 #title {
   font-weight: bold;
