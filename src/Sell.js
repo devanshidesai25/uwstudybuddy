@@ -84,7 +84,7 @@ function Sell () {
                 name="supplyType"
                 className="supply-picker"
                 value={formData.supplyType}
-                onChange={handleInputChange}
+                onChange={handleInputChange} required
               >
                 <option value="">Select a type</option>
                 <option>Textbook</option>
@@ -99,7 +99,7 @@ function Sell () {
                 name="name"
                 rows="1"
                 value={formData.name}
-                onChange={handleInputChange}
+                onChange={handleInputChange} required
               ></textarea>
 
               <label htmlFor="condition">Condition</label>
@@ -107,7 +107,7 @@ function Sell () {
                 name="condition"
                 className="condition-picker"
                 value={formData.condition}
-                onChange={handleInputChange}
+                onChange={handleInputChange} required
               >
                 <option value="">Select a condition</option>
                 <option>Brand New</option>
@@ -122,7 +122,7 @@ function Sell () {
                 id="image"
                 name="image"
                 accept="image/*"
-                onChange={handleImageChange}
+                onChange={handleImageChange} required
               />
 
               <label htmlFor="description">Description:</label>
@@ -131,7 +131,7 @@ function Sell () {
                 name="description"
                 rows="4"
                 value={formData.description}
-                onChange={handleInputChange}
+                onChange={handleInputChange} required
               ></textarea>
 
               <label htmlFor="price">Price:</label>
@@ -140,7 +140,7 @@ function Sell () {
                 id="price"
                 name="price"
                 value={formData.price}
-                onChange={handleInputChange}
+                onChange={handleInputChange} required
               />
 
             <label htmlFor="email">Email:</label>
@@ -149,7 +149,7 @@ function Sell () {
                 id="email"
                 name="email"
                 value={formData.email}
-                onChange={handleInputChange}
+                onChange={handleInputChange} required
               />
 
               <button type="submit">Submit Listing</button>
