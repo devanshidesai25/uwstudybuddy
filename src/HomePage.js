@@ -24,17 +24,6 @@ function HomePage() {
       <main id='main'>
         <h1 className='welcome'><strong>Welcome to UW Study Buddy</strong></h1>
         <h4 className='welcome'>Unlock Your Learning Legacy: Connect, Sell, Succeed!</h4>
-        <div className='social-icons'>
-            <a href="https://www.facebook.com/yourpage" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faFacebook} size="2x" />
-            </a>
-            <a href="https://twitter.com/yourpage" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faTwitter} size="2x" />
-            </a>
-            <a href="https://www.instagram.com/yourpage" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faInstagram} size="2x" />
-            </a>
-          </div>
 
         <ul class='banner'>
             <li><img src={img1} alt="campusImage" /></li>
@@ -78,7 +67,18 @@ function HomePage() {
             </li>
           </ul>
         </div>
-      </main>
+      <div className='social-icons'>
+            <a href="https://www.facebook.com/yourpage" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faFacebook} size="2x" />
+            </a>
+            <a href="https://twitter.com/yourpage" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faTwitter} size="2x" />
+            </a>
+            <a href="https://www.instagram.com/yourpage" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
+            </a>
+          </div>
+          </main>
       <Footer />
     </div>
   );
