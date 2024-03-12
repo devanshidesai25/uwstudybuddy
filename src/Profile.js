@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function ProfileForm () {
   const database = getDatabase();
+  
   const navigate = useNavigate();
 
 
@@ -41,6 +42,7 @@ function ProfileForm () {
             email: '',
             bio: ''
           });
+          navigate('/friends');
         })
         .catch((error) => {
           console.error('Error saving profile:', error);
@@ -50,7 +52,6 @@ function ProfileForm () {
       console.error('Error:', error);
       alert('An error occurred. Please try again later.');
     }
-    navigate('./friends');
   };
 
   return (
