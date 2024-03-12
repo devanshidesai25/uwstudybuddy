@@ -4,7 +4,7 @@ import { getDatabase, ref, push } from 'firebase/database';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import React, { useState } from 'react';
 
-const Sell = () => {
+function Sell () {
   const database = getDatabase();
   const storage = getStorage();
 

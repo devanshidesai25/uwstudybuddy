@@ -1,17 +1,16 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
-import AvailableListings from './Shop';
+import Shop from './Shop';
 import Sell from './Sell';
 import Profile from './Profile';
-import ListingDisplay from './ListingDisplay';
 import Friends from './Friends';
+import ListingDetails from '/.ListingDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/style.css';
-import Shop from './Shop'
 
 
-function App(props) {
+function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -19,6 +18,7 @@ function App(props) {
       <Route path="/profile" element={<Profile />} />
       <Route path="/friends" element={<Friends />} />
       <Route path="/shop" element={<Shop/>} />
+      <Route path="/listing:id" element={<ListingDetails/> } />
     </Routes>
   );
 }

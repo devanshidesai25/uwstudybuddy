@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, get, set } from 'firebase/database';
-import { Link } from 'react-router-dom'; 
+import { getDatabase, ref, get } from 'firebase/database';
+import { Link } from 'react-router-dom';
 import Header from './Header';
-import Footer from './Footer'; 
+import Footer from './Footer';
 
-const Shop = () => {
+function Shop() {
   const [listings, setListings] = useState([]);
-  const [selectedSupplyType, setType] = useState('All'); // Initial value is 'All'
+  const [selectedSupplyType, setType] = useState('All');
 
   const filterListings = (listings) => {
     return listings.filter((listing) => {
@@ -22,6 +22,7 @@ const Shop = () => {
       const database = getDatabase();
       const snapshot = await get(ref(database, 'supplyListings'));
       const data = [];
+
       if (snapshot.exists()) {
         snapshot.forEach((childSnapshot) => {
           data.push({ id: childSnapshot.key, ...childSnapshot.val() });
@@ -29,15 +30,15 @@ const Shop = () => {
       }
       setListings(data);
     };
+
     fetchData();
-  }, []); 
+  }, []);
 
   const handleDropdownChange = (event) => {
     setType(event.target.value);
   };
 
   const filteredListings = filterListings(listings);
-
 
   return (
     <div>
@@ -46,7 +47,7 @@ const Shop = () => {
         <h2>View Available Listings</h2>
         <section id="Filter">
           <label htmlFor="category">Filter by Category:</label>
-          <select id="category" onChange={(e) => setType(e.target.value)}>
+          <select id="category" onChange={handleDropdownChange}>
             <option value="All">All</option>
             <option value="Textbook">Textbooks</option>
             <option value="Notes">Notes</option>
@@ -58,12 +59,18 @@ const Shop = () => {
           <section className="textbook-listings">
             {filteredListings.map((listing) => (
               <div key={listing.id} className="textbook-item-container">
-                <img src={listing.image} alt={`${listing.name} Image`} />
+                <img src={listing.image} alt={`${listing.name}`} />
                 <ul>
                   <li><h3>{listing.name}</h3></li>
                   <li><h6>${listing.price}</h6></li>
-                  <li><button>View Full Listing</button></li>
                 </ul>
+                <div className="more-details-wrapper">
+                  <Link to={`/listing/${listing.id}`}>
+                    <button>
+                      View Full Listing
+                    </button>
+                  </Link>
+                </div>
               </div>
             ))}
           </section>
