@@ -3,6 +3,8 @@ import Header from './Header';
 import Footer from './Footer';
 import { getDatabase, ref, push } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function ProfileForm() {
   const database = getDatabase();
@@ -13,7 +15,8 @@ function ProfileForm() {
     major: '',
     grade: '',
     email: '',
-    bio: ''
+    bio: '',
+    graduationDate: null
   });
 
   const handleChange = (event) => {
@@ -24,11 +27,20 @@ function ProfileForm() {
     }));
   };
 
+  const handleGraduationDateChange = (date) => {
+    setFormData({
+      ...formData,
+      graduationDate: date
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const newData = { ...formData };
+      // Convert graduation date to ISO string format before saving
+      newData.graduationDate = formData.graduationDate ? formData.graduationDate.toISOString() : null;
       push(ref(database, 'profileData'), newData)
         .then(() => {
           alert('Profile saved successfully!');
@@ -37,9 +49,9 @@ function ProfileForm() {
             major: '',
             grade: '',
             email: '',
-            bio: ''
+            bio: '',
+            graduationDate: null
           });
-          navigate('/friends');
         })
         .catch((error) => {
           console.error('Error saving profile:', error);
@@ -49,6 +61,7 @@ function ProfileForm() {
       console.error('Error:', error);
       alert('An error occurred. Please try again later.');
     }
+    navigate('/friends');
   };
 
   return (
@@ -78,6 +91,16 @@ function ProfileForm() {
               <option>Junior</option>
               <option>Senior</option>
             </select>
+          </div>
+          <div>
+            <label>Graduation Date:</label>
+            <DatePicker
+              selected={formData.graduationDate}
+              onChange={handleGraduationDateChange}
+              dateFormat="MM/dd/yy"
+              placeholderText="Select graduation date"
+              required
+            />
           </div>
           <div>
             <label>Bio:</label>
