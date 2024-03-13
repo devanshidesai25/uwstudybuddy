@@ -54,14 +54,13 @@ body {
   cursor: pointer;
 }
 
-
 ul {
   display: none; 
 }
 
 ul.show {
   display: block; 
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 .menu-bar a {
@@ -82,21 +81,21 @@ ul.show {
 
   .menu-bar {
     margin: 0px;
-    display: flex; 
+    display: flex; /*block*/
     background-color: #4D307F;
     font-size: larger;
     text-align: center;
-    align-items: center; 
+    align-items: center; /*flex-start*/
     justify-content: left;
     padding: 5px 10px;
   }
 
   .logo-container {
-    margin-right: 20px;
+    margin-right: 20px; /* Adjust as needed */
   }
 
   .logo {
-    width: 100px; 
+    width: 100px; /* Adjust as needed */
     height: auto;
   }
 
@@ -129,7 +128,7 @@ ul.show {
 
   #hamburger-menu {
     display: none; 
-}
+  }
 }
 
 
@@ -847,4 +846,7 @@ textbook-item-container {
   justify-content: center;
   align-items: center;
 }
+
+
+
 

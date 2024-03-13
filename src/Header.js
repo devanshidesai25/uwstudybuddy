@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import studyBuddyLogo from './img/studybuddy-logo.png';
@@ -14,11 +15,9 @@ function Header() {
       <div className="logo-container">
         <Link to="/"><img src={studyBuddyLogo} alt="Study Buddy Logo" className="logo" /></Link>
       </div>
-      {!showMenu && (
-        <div id="hamburger-menu" onClick={toggleMenu}>
-          <a href="#"><i className="fa fa-bars" aria-label="menu"></i></a>
-        </div>
-      )}
+      <div id="hamburger-menu" onClick={toggleMenu}>
+        <a href="#"><i className="fa fa-bars" aria-label="menu"></i></a>
+      </div>
       <ul className={showMenu ? "show" : ""}>
         <li><Link to="/profile">Profile</Link></li> 
         <li><Link to="/friends">Friends</Link></li> 
