@@ -13,3 +13,5 @@ In addition to facilitating social connections, Study Buddy offers a convenient 
 
 ## Join Study Buddy Today!
 Experience the benefits of collaboration, support, and camaraderie within the UW student community. Join Study Buddy today and unlock a world of opportunities to connect, learn, and grow together with your fellow Huskies!
+
+Created by Devanshi Desai, Maansi Surve, Thea Klein-Balajee, and Phoebe Romangsuriat
