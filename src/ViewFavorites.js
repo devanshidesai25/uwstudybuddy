@@ -61,8 +61,8 @@ function Favorites() {
     <div>
       <Header />
       <section id="favorite-listings">
-        <h2>Your Favorites!</h2>
-        <h6>Contact the seller before your item gets sold!</h6>
+        <h2 className='favs-title'>Your Favorites!</h2>
+        <h6 className='favs-desc'>Contact the seller before your item gets sold!</h6>
         <div className="listings-container">
           <section className="textbook-listings">
             {filteredListings.map((listing) => (

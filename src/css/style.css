@@ -11,11 +11,15 @@ body {
   margin-bottom: 0;
 }
 
-.events-container, .alumni-search, #Filter {
+.events-container, .alumni-search, #Filter, .favs-title {
   padding: 40px;
 }
 
-.events-container h2, .friends-header, #listings-title {
+.favs-desc {
+  padding-left: 40px;
+}
+
+.events-container h2, .friends-header, #listings-title, .favs-title {
   font-weight: bold;
   color:rgb(79, 0, 139)
 }
