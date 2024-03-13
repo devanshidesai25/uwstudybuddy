@@ -65,7 +65,7 @@ function Sell() {
       email: '',
       image: null,
     });
-    navigate('/favorites');
+    navigate('/shop');
   };
 
   return (

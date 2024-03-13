@@ -29,7 +29,7 @@ function ListingCard({ id, name, image, price, isFavorited, onToggleFavorite }) 
       <div className="more-details-wrapper">
         <Link to={`/listing/${id}`}>
           <button>
-            View Full Listing
+            View Listing
           </button>
         </Link>
       </div>
