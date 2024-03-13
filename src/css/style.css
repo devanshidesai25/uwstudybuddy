@@ -67,23 +67,46 @@ cite {
 }
 
 .welcome {
-  justify-content: left;
-  text-align: left;
-  margin-left: 90px;
+  justify-content: center;
+  text-align: center;
   margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .welcome {
+    justify-content: left;
+    text-align: left;
+    margin-left: 90px;
+    margin-bottom: 30px;
+  }
+}
+
+.social-icons a {
+  margin: 0 10px;
+  color: #380565;
 }
 
 .social-icons {
   justify-content: left;
   text-align: left;
-  margin-left: 90px;
   margin-bottom: 30px;
   color: #4D307F;
 }
 
 .social-icons > * {
-  margin-right: 20px; /* Add 20px right margin to each item */
+  margin-right: 20px; 
 }
+
+@media (min-width: 768px) {
+  .social-icons {
+    justify-content: left;
+    text-align: left;
+    margin-left: 90px;
+    margin-bottom: 30px;
+  }
+}
+
+
 
 .banner {
   width: 100%;
@@ -107,7 +130,6 @@ cite {
   object-fit: cover;
 }
 
-
 img {
   display: block;
   margin-left: auto;
@@ -115,7 +137,6 @@ img {
   max-width: 200px;
   max-height: 200px;
 }
-
 
 @media (min-width: 768px) {
   .homepage-img {
@@ -465,13 +486,16 @@ button[type="goback"] {
   display: flex;
   justify-content: center;
   color: #4D307F;
+  flex-wrap: wrap;
 }
 
 .home-btns ul li {
-  width: 270px; 
+  width: 300px; 
   height: auto; 
   margin-right: 10px;
-  color: #4D307F;
+  color: #4D307F; 
+  margin-bottom: 20px;
+  
 }
 
 .home-btns ul li a {
@@ -499,6 +523,60 @@ button[type="goback"] {
 .home-btns ul li a span {
   font-size: 20px;
   font-weight: bold;
+}
+
+
+@media (min-width: 768px) {
+  .home-btns img {
+    max-width: 150px;
+    height: auto;
+  }
+
+  .home-btns {
+    margin-top: 30px;
+  }
+
+  .home-btns ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    color: #4D307F;
+  }
+
+  .home-btns ul li {
+    width: 300px; 
+    height: auto; 
+    margin-right: 10px;
+    color: #4D307F;
+  }
+
+  .home-btns ul li a {
+    padding: 20px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee7ff;
+    border-radius: 20px;
+    color: #4D307F;
+  }
+
+  .home-btns ul li a:hover {
+    background-color: #dbd1f2;
+  }
+
+  .home-btns ul li a img {
+    width: 50px;
+    height: auto;
+    margin-bottom: 5px;
+  }
+
+  .home-btns ul li a span {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 
 .friends-container {
@@ -578,7 +656,6 @@ button[type="goback"] {
   text-align: left;
   margin: 15px;
 }
-
 
 .selected {
   background-color: #eee7ff;
@@ -688,10 +765,6 @@ textbook-item-container {
   text-align: center;
 }
 
-.welcome {
-  margin-bottom: 20px;
-}
-
 .banner {
   list-style: none;
   padding: 0;
@@ -700,11 +773,3 @@ textbook-item-container {
   align-items: center;
 }
 
-.social-icons {
-  margin-top: 30px;
-}
-
-.social-icons a {
-  margin: 0 10px;
-  color: #380565;
-}
