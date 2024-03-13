@@ -54,13 +54,14 @@ body {
   cursor: pointer;
 }
 
+
 ul {
   display: none; 
 }
 
 ul.show {
   display: block; 
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .menu-bar a {
@@ -81,21 +82,21 @@ ul.show {
 
   .menu-bar {
     margin: 0px;
-    display: flex; /*block*/
+    display: flex; 
     background-color: #4D307F;
     font-size: larger;
     text-align: center;
-    align-items: center; /*flex-start*/
+    align-items: center; 
     justify-content: left;
     padding: 5px 10px;
   }
 
   .logo-container {
-    margin-right: 20px; /* Adjust as needed */
+    margin-right: 20px;
   }
 
   .logo {
-    width: 100px; /* Adjust as needed */
+    width: 100px; 
     height: auto;
   }
 
@@ -128,7 +129,7 @@ ul.show {
 
   #hamburger-menu {
     display: none; 
-  }
+}
 }
 
 
