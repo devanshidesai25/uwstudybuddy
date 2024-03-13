@@ -66,11 +66,6 @@ function HomePage() {
               </Link>
             </li>
             <li>
-              <Link to="/events">
-                <img src={eventsLogo} alt="Events Logo" />
-                <span>Find Events</span>
-                <p>Meet & connect with others!</p>
-              </Link>
             </li>
           </ul>
         </div>
