@@ -1,162 +1,85 @@
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, get } from 'firebase/database';
+import { getDatabase, ref, get, set } from 'firebase/database';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 
-function FriendItem({ friend, handleSendEmail, isSelected, toggleSelection }) {
-  const sendEmail = () => {
-    handleSendEmail(friend.email);
-  };
+function FavoritesListingCard({ id, name, image, price}) {
 
   return (
-    <div className={`card m-3 ${isSelected ? 'selected' : ''}`} style={{ width: '18rem' }} onClick={toggleSelection}>
-      <div className="card-body">
-        <h5 className="card-title">{friend.name}</h5>
-        <p className="card-text">Major: {friend.major}</p>
-        <p className="card-text">Grade: {friend.grade}</p>
-        <p className="card-text">Email: {friend.email}</p>
-        <p className="card-text">Bio: {friend.bio}</p>
-        <button className="btn btn-primary purple-btn" onClick={sendEmail}>
-          Send an Email!
-        </button>
+    <div key={id} className="textbook-item-container">
+      <img src={image} alt={`${name}`} />
+      <ul>
+        <li><h3>{name}</h3></li>
+        <li><h6>${price}</h6></li>
+      </ul>
+      <div className="more-details-wrapper">
+        <Link to={`/listing/${id}`}>
+          <button>
+            View Full Listing
+          </button>
+        </Link>
       </div>
     </div>
   );
 }
 
-function Friends() {
-  const [searchCriteria, setSearchCriteria] = useState({
-    major: '',
-    grade: '',
-    email: '',
-    bio: ''
-  });
-
-  const [searchResults, setSearchResults] = useState([]);
-  const [selectedProfiles, setSelectedProfiles] = useState([]);
+function Favorites() {
+  const [listings, setListings] = useState([]);
+  const [selectedSupplyType, setType] = useState('All');
 
   useEffect(() => {
     const fetchData = async () => {
       const database = getDatabase();
-      const snapshot = await get(ref(database, 'profileData'));
+      const snapshot = await get(ref(database, 'supplyListings'));
+      const data = [];
 
       if (snapshot.exists()) {
-        const data = [];
         snapshot.forEach((childSnapshot) => {
           data.push({ id: childSnapshot.key, ...childSnapshot.val() });
         });
-        setSearchResults(data);
-      } else {
-        console.log('No data available');
       }
+      setListings(data);
     };
 
     fetchData();
   }, []);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setSearchCriteria((prevCriteria) => ({
-      ...prevCriteria,
-      [name]: value
-    }));
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const filteredProfiles = searchResults.filter((profile) => {
-      const majorMatch =
-        !searchCriteria.major || profile.major.toLowerCase().includes(searchCriteria.major.toLowerCase());
-      const gradeMatch =
-        !searchCriteria.grade || profile.grade.toLowerCase() === searchCriteria.grade.toLowerCase();
-      const emailMatch =
-        !searchCriteria.email || profile.email.toLowerCase().includes(searchCriteria.email.toLowerCase());
-      const bioMatch =
-        !searchCriteria.bio || profile.bio.toLowerCase().includes(searchCriteria.bio.toLowerCase());
-
-      return majorMatch && gradeMatch && emailMatch && bioMatch;
-    });
-
-    setSearchResults(filteredProfiles);
-  };
-
-  const toggleProfileSelection = (profile) => {
-    setSelectedProfiles((prevSelected) => {
-      if (prevSelected.some((p) => p.id === profile.id)) {
-        return prevSelected.filter((p) => p.id !== profile.id);
-      } else {
-        return [...prevSelected, profile];
+  const filterListings = (listings) => {
+    return listings.filter((listing) => {
+      if (listing.favorited !== true) {
+        return false;
       }
+      return true;
     });
   };
 
-  const handleSendEmail = () => {
-    if (selectedProfiles.length === 0) {
-      alert('Please select at least one profile to send an email.');
-      return;
-    }
-
-    const emailList = selectedProfiles.map((friend) => friend.email).join(',');
-    const subject = 'Your Subject';
-    const body = 'Your email body content.';
-    const mailtoLink = `mailto:${emailList}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailtoLink;
-  };
+  const filteredListings = filterListings(listings);
 
   return (
     <div>
       <Header />
-
-      <div className="friends-container">
-        <section className="alumni-search">
-          <h1 className="friends-header">Find Friends!</h1>
-
-          <form onSubmit={handleSubmit} className="friends-form">
-            <label htmlFor="major">Major:</label>
-            <input type="text" id="major" name="major" onChange={handleInputChange} value={searchCriteria.major} />
-
-            <label htmlFor="grade">Grade:</label>
-            <select id="grade" name="grade" onChange={handleInputChange} value={searchCriteria.grade}>
-              <option value="">Select Grade</option>
-              <option value="Freshman">Freshman</option>
-              <option value="Sophomore">Sophomore</option>
-              <option value="Junior">Junior</option>
-              <option value="Senior">Senior</option>
-            </select>
-
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" onChange={handleInputChange} value={searchCriteria.email} />
-
-            <button type="submit">Search</button>
-          </form>
-        </section>
-      </div>
-
-      <div id="results" style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {searchResults.length === 0 ? (
-          <p>
-            {searchCriteria.major || searchCriteria.grade || searchCriteria.email || searchCriteria.bio
-              ? 'No matching friends found.'
-              : 'Enter search criteria.'}
-          </p>
-        ) : (
-          searchResults.map((profile) => (
-            <FriendItem
-              key={profile.id}
-              friend={profile}
-              handleSendEmail={handleSendEmail}
-              isSelected={selectedProfiles.some((p) => p.id === profile.id)}
-              toggleSelection={() => toggleProfileSelection(profile)}
-            />
-          ))
-        )}
-      </div>
-
+      <section id="favorite-listings">
+        <h2>Your Favorites!</h2>
+        <h6>Contact the seller before your item gets sold!</h6>
+        <div className="listings-container">
+          <section className="textbook-listings">
+            {filteredListings.map((listing) => (
+              <FavoritesListingCard
+                key={listing.id}
+                id={listing.id}
+                name={listing.name}
+                image={listing.image}
+                price={listing.price}
+              />
+            ))}
+          </section>
+        </div>
+      </section>
       <Footer />
     </div>
   );
 }
 
-export default Friends;
+export default Favorites;
