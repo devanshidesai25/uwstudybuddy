@@ -8,12 +8,19 @@ function FriendItem({ friend, handleSendEmail, isSelected, toggleSelection }) {
     handleSendEmail(friend.email);
   };
 
+  const formatDate = (date) => {
+    if (!date) return ''; // Return empty string if date is null or undefined
+    const options = { month: '2-digit', day: '2-digit', year: '2-digit' };
+    return new Date(date).toLocaleDateString('en-US', options);
+  };
+
   return (
     <div className={`card m-3 ${isSelected ? 'selected' : ''}`} style={{ width: '18rem' }} onClick={toggleSelection}>
       <div className="card-body">
         <h5 className="card-title">{friend.name}</h5>
         <p className="card-text">Major: {friend.major}</p>
         <p className="card-text">Grade: {friend.grade}</p>
+        <p className="card-text">Graduation Date: {formatDate(friend.graduationDate)}</p>
         <p className="card-text">Email: {friend.email}</p>
         <p className="card-text">Bio: {friend.bio}</p>
         <button className="btn btn-primary purple-btn" onClick={sendEmail}>
@@ -111,7 +118,7 @@ function Friends() {
 
       <div className="friends-container">
         <section className="alumni-search">
-          <h2 className="friends-header">Find Friends!</h2>
+          <h1 className="friends-header">Find Friends!</h1>
 
           <form onSubmit={handleSubmit} className="friends-form">
             <label htmlFor="major">Major:</label>
