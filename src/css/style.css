@@ -793,6 +793,13 @@ button[type="goback"] {
   padding: 0;
 }
 
+.multiple-desc {
+  font-size: small;
+  font-style: italic;
+  margin-left: 20px;
+  padding-top: 40px;
+}
+
 .textbook-item-container li h3,
 .textbook-item-container li h6 {
   color: black;

@@ -9,7 +9,7 @@ function FriendItem({ friend, handleSendEmail, isSelected, toggleSelection }) {
   };
 
   const formatDate = (date) => {
-    if (!date) return ''; // Return empty string if date is null or undefined
+    if (!date) return '';
     const options = { month: '2-digit', day: '2-digit', year: '2-digit' };
     return new Date(date).toLocaleDateString('en-US', options);
   };
@@ -119,7 +119,6 @@ function Friends() {
       <div className="friends-container">
         <section className="alumni-search">
           <h1 className="friends-header">Find Friends!</h1>
-
           <form onSubmit={handleSubmit} className="friends-form">
             <label htmlFor="major">Major:</label>
             <input type="text" id="major" name="major" onChange={handleInputChange} value={searchCriteria.major} />
@@ -133,11 +132,13 @@ function Friends() {
               <option value="Senior">Senior</option>
             </select>
 
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email: </label>
             <input type="email" id="email" name="email" onChange={handleInputChange} value={searchCriteria.email} />
 
             <button type="submit">Search</button>
+
           </form>
+          <p className="multiple-desc">Select multiple cards to send a group email!</p>
         </section>
       </div>
 
