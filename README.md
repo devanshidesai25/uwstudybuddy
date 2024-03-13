@@ -1,70 +1,15 @@
-# Getting Started with Create React App
+# Study Buddy: Fostering Connections and Collaboration Among UW Students
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Study Buddy is a comprehensive platform designed to enhance the academic experience for University of Washington (UW) students by facilitating connections, collaboration, and resource-sharing within the student community.
 
-## Available Scripts
+## Building Connections
+At Study Buddy, we believe that building connections is essential for success in college. Our app provides a user-friendly interface where UW students can connect with peers who share similar academic interests, majors, or career aspirations. Whether you're a freshman looking to make new friends or a senior seeking networking opportunities, Study Buddy offers a welcoming environment to foster meaningful connections.
 
-In the project directory, you can run:
+## Seeking Assistance and Offering Support
+Studying can be challenging, but with Study Buddy, you're never alone. Our platform allows students to reach out for help when needed and offer support to others in return. Whether you're struggling with a difficult course, seeking advice on career paths, or simply need someone to motivate you, Study Buddy provides a supportive community where students can uplift and empower each other.
 
-### `npm start`
+## Marketplace for Notes and School Supplies
+In addition to facilitating social connections, Study Buddy offers a convenient marketplace where students can buy and sell old notes, textbooks, and school supplies. By leveraging peer-to-peer transactions, students can save money on essential study materials while also contributing to a sustainable academic community. Whether you're looking to declutter your dorm room or find affordable study resources, Study Buddy's marketplace has you covered.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Join Study Buddy Today!
+Experience the benefits of collaboration, support, and camaraderie within the UW student community. Join Study Buddy today and unlock a world of opportunities to connect, learn, and grow together with your fellow Huskies!
