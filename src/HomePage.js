@@ -8,6 +8,7 @@ import profileLogo from './img/profile.png';
 import shopLogo from './img/shop.png';
 import sellLogo from './img/sell.png';
 import friendsLogo from './img/friends.png';
+import eventsLogo from './img/events.png';
 import img1 from './img/image1.jpg';
 import img2 from './img/image2.jpg';
 import img3 from './img/image3.jpg';
@@ -62,6 +63,13 @@ function HomePage() {
                 <img src={friendsLogo} alt="Friends Logo" />
                 <span>Find Friends</span>
                 <p>Connect with peers!</p>
+              </Link>
+            </li>
+            <li>
+              <Link to="/events">
+                <img src={eventsLogo} alt="Events Logo" />
+                <span>Find Events</span>
+                <p>Meet & connect with others!</p>
               </Link>
             </li>
           </ul>
