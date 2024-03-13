@@ -102,8 +102,8 @@ function Shop() {
     <div>
       <Header />
       <section id="All-Listings">
-        <h2>View Available Listings</h2>
         <section id="Filter">
+        <h2 id='listings-title'>View Available Listings</h2>
           <label htmlFor="category">Filter by Category:</label>
           <select id="category" onChange={handleDropdownChange}>
             <option value="All">All</option>

@@ -111,7 +111,7 @@ function Friends() {
 
       <div className="friends-container">
         <section className="alumni-search">
-          <h1 className="friends-header">Find Friends!</h1>
+          <h2 className="friends-header">Find Friends!</h2>
 
           <form onSubmit={handleSubmit} className="friends-form">
             <label htmlFor="major">Major:</label>

@@ -11,6 +11,19 @@ body {
   margin-bottom: 0;
 }
 
+.events-container, .alumni-search, #Filter {
+  padding: 40px;
+}
+
+.events-container h2, .friends-header, #listings-title {
+  font-weight: bold;
+  color:rgb(79, 0, 139)
+}
+
+.events-container button {
+  margin-bottom: 50px;
+}
+
 .menu-bar img {
   display: block;
   margin-left: auto;
@@ -490,7 +503,7 @@ button[type="goback"] {
 }
 
 .home-btns ul li {
-  width: 300px; 
+  width: 270px; 
   height: auto; 
   margin-right: 10px;
   color: #4D307F; 
