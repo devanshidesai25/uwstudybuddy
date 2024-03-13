@@ -28,50 +28,107 @@ body {
   margin-bottom: 50px;
 }
 
-.menu-bar img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100px;
-  max-height: 100px;
-  margin-left: 70px;
-}
-
 .menu-bar {
   margin: 0px;
-  display: block;
+  display: flex; 
   background-color: #4D307F;
   font-size: larger;
   text-align: center;
-  align-items: flex-start;
-  justify-content: left;
+  align-items: center; 
+  justify-content: space-between;
   padding: 5px 10px;
 }
 
-#title {
-  font-weight: bold;
-  font-size: larger;
-  word-spacing: 2px;
-  letter-spacing: 2px;
-  color: #eee7ff;
+.logo-container {
+  display: flex; 
+  align-items: center; 
 }
 
-.menu-bar ul {
-  padding: 10px;
-  list-style-type: none;
-  word-spacing: 30px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
+.logo {
+  width: auto; 
+  height: 50px;
 }
 
-.menu-bar li {
-  margin-right: 30px;
+#hamburger-menu {
+  margin-left: 10px; 
+  cursor: pointer;
+}
+
+ul {
+  display: none; 
+}
+
+ul.show {
+  display: block; 
+  margin-top: 15px;
 }
 
 .menu-bar a {
   text-decoration: none;
   color: #fff;
+}
+
+
+@media (min-width: 768px) {
+  .menu-bar img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100px;
+    max-height: 100px;
+    margin-left: 70px;
+  }
+
+  .menu-bar {
+    margin: 0px;
+    display: flex; /*block*/
+    background-color: #4D307F;
+    font-size: larger;
+    text-align: center;
+    align-items: center; /*flex-start*/
+    justify-content: left;
+    padding: 5px 10px;
+  }
+
+  .logo-container {
+    margin-right: 20px; /* Adjust as needed */
+  }
+
+  .logo {
+    width: 100px; /* Adjust as needed */
+    height: auto;
+  }
+
+  #title {
+    font-weight: bold;
+    font-size: larger;
+    word-spacing: 2px;
+    letter-spacing: 2px;
+    color: #eee7ff;
+  }
+
+  .menu-bar ul {
+    margin-left: 100px;
+    padding: 10px;
+    list-style-type: none;
+    word-spacing: 30px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .menu-bar li {
+    margin-right: 120px;
+  }
+
+  .menu-bar a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  #hamburger-menu {
+    display: none; 
+  }
 }
 
 
