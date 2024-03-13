@@ -33,7 +33,7 @@ function ListingDetails() {
       <div className="listing-container">
         {listingData ? (
           <>
-            <img src={listingData.image} alt="Listing" />
+            <img src={listingData.image} alt={listingData.name} />
             <h3>{listingData.name}</h3>
             <p>Condition: {listingData.condition}</p>
             <p>Price: ${listingData.price}</p>
